@@ -168,6 +168,58 @@ npx serve .
 
 ---
 
+## 二之二、在线部署（GitHub Pages）
+
+站点是纯静态的、全部用相对路径，可以直接托管在 GitHub Pages 上。
+
+**发布到用户站仓库**（`<用户名>.github.io`）→ 访问 `https://<用户名>.github.io/`。
+这是最省事的做法：仓库名必须是 `<用户名>.github.io`，Pages 会自动生效。
+
+**或者发布到普通仓库** → 访问 `https://<用户名>.github.io/<仓库名>/`，
+需要在 Settings → Pages 里把 Source 选成 `main` 分支 / `root` 目录。
+
+### 用脚本一次性推完（推荐，能带二进制文件）
+
+`_build/gh_publish.py` 用 **Git Data API**（blobs → tree → commit → 更新 ref）
+把整站一次提交推上去：
+
+```bash
+GITHUB_TOKEN=ghp_xxx python _build/gh_publish.py <owner> <repo> ./ main
+```
+
+> **为什么不用 Contents API / 网页上传**：Contents API 一次只能写一个文件，
+> 40 个文件就要 40 次提交；而且图片、视频这类二进制文件如果走「文本内容」通道
+> （例如某些 MCP 连接器的 `create_or_update_file`）会被 UTF-8 编码损坏。
+> Git Data API 在本地做 base64，字节原样传输，**16.7 MB 的宣传片也不会坏**。
+
+发布前先跑一遍引用校验，避免「本地能开、上线才发现某张图 404」：
+
+```bash
+python _build/prepublish_check.py <发布目录>
+```
+
+它会扫描 HTML/CSS/JS 里所有本地引用并逐一确认文件存在，同时列出 `assets/`
+中未被引用的冗余文件（例如 `animal.png`）。
+
+### 发布目录该放什么
+
+只放**站点运行必需**的文件：
+
+```
+index.html  +  另外 10 个页面
+css/  (style / motion / pages / design-upgrade)
+js/   (main / motion / pages)
+assets/ (图片 + 宣传片)
+README.md
+```
+
+**不要**把 `_build/`、`_design_preview/`、`_design_backup/`、`screenshots/`
+一起推上去 —— 它们是开发/测试产物，占了 65 MB 且与站点无关。
+`css/preview-force.css` 也排除：它是截图用的强制样式，**一旦被链进页面会杀死全站动画**
+（详见「七、踩过的坑」）。
+
+---
+
 ## 三、设计系统（复刻要点）
 
 所有颜色、字体、间距都定义在 `css/style.css` 顶部的 `:root` 里，这是整个网站的「调色板」。
