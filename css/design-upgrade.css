@@ -284,6 +284,20 @@ section{ padding:clamp(96px,11vh,150px) 0; }
   color:rgba(245,241,230,.46);
 }
 
+/* 官方徽章（<img>）—— 垫米白底板
+   官方 logo 是石板蓝 #406070，直接放在深松林绿 #1B3A2C 上对比度太低会发闷，
+   所以垫一层米白底板：既保留官方配色，看起来又像一枚官方徽章。
+   （想要米白单色版：删掉 background，给 img 加
+     filter:brightness(0) invert(1) 即可。） */
+img.badge{
+  object-fit:contain;
+  background:var(--du-cream);
+  border-radius:3px;
+  padding:4px;
+}
+/* 页脚徽章原本是 46% 米白的水印感，换成官方图标后略提亮，保持克制但看得清 */
+.footer-badge img.badge{ opacity:.62; }
+
 /* ---------- 顶部阅读进度细线 ---------- */
 .read-progress{
   position:fixed; top:0; left:0; right:0; height:2px;

@@ -387,13 +387,17 @@
   box-shadow: 0 2px 26px rgba(10, 22, 16, .3);
 }
 
-/* 顶栏内部元素的随动缩放 */
-.topbar .brand svg {
+/* 顶栏内部元素的随动缩放
+   徽章已从内联 <svg> 换成官方 <img>，所以两条规则都要带上 img.badge，
+   否则滚动收缩时徽章不会跟着变小。 */
+.topbar .brand svg,
+.topbar .brand img.badge {
   transition: width .45s cubic-bezier(.22, .61, .36, 1),
               height .45s cubic-bezier(.22, .61, .36, 1);
 }
 
-.topbar.is-compact .brand svg {
+.topbar.is-compact .brand svg,
+.topbar.is-compact .brand img.badge {
   width: 34px;
   height: 34px;
 }
