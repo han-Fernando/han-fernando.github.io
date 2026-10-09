@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>优胜美地国家公园 · Yosemite National Park（中文信息站）</title>
+<meta name="description" content="优胜美地国家公园 Yosemite National Park 中文信息站：行程规划、代表区域、瀑布、露营、住宿、许可与公园动态。">
+<meta name="keywords" content="优胜美地,约塞米蒂,Yosemite,国家公园,美国国家公园,半圆顶,酋长岩,巨杉">
+<meta name="author" content="翻译2401 网站：刘知函 翻译：李昊霖 巨家泽">
+<meta name="theme-color" content="#1B3A2C">
+
+<!-- 社交分享预览（微信 / QQ / 微博等） -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="优胜美地国家公园 · 花岗岩与瀑布的圣殿">
+<meta property="og:description" content="这里不只是一座伟大的峡谷，更是人类远见的丰碑。">
+<meta property="og:image" content="assets/banner-valley.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- 站点图标 -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231B3A2C'/%3E%3Cpath d='M6 24 L13 11 L17 18 L20 13 L26 24 Z' fill='%23F5F1E6'/%3E%3Ccircle cx='23' cy='8' r='2.4' fill='%23C4622A'/%3E%3C/svg%3E">
+
+<!-- 字体：思源宋体 / 思源黑体 + Marcellus（拉丁石刻体） -->
+<link rel="preconnect" href="https://miaoda.feishu.cn" crossorigin>
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Marcellus&family=Noto+Serif+SC:wght@500;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap">
+
+<!-- 样式表 -->
+<link rel="stylesheet" href="css/style.css">
+<!-- 动效样式（在基础样式之后加载，便于覆盖） -->
+<link rel="stylesheet" href="css/motion.css">
+<!-- 设计升级样式（视觉预览） -->
+<link rel="stylesheet" href="css/design-upgrade.css">
+</head>
+
+<body id="top">
+
+<!-- 颗粒质感层 -->
+<div class="grain" aria-hidden="true"></div>
+<!-- 阅读进度细线 -->
+<div class="read-progress" aria-hidden="true"><i></i></div>
+
+<a class="sr-only" href="#about">跳到主要内容</a>
+
+<!-- =========================================================
+     顶部导航
+     ========================================================= -->
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="优胜美地国家公园首页">
+      <svg class="badge" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+        <circle cx="32" cy="32" r="30.4" stroke="currentColor" stroke-width="1.4" opacity=".72"/>
+        <circle cx="32" cy="32" r="26.8" stroke="currentColor" stroke-width=".6" opacity=".36"/>
+        <path id="ymArcN" d="M10.39 24.13 A23 23 0 0 1 53.61 24.13" fill="none"/>
+        <text font-family="Marcellus, serif" font-size="6.1" fill="currentColor"
+              letter-spacing="1.05" opacity=".92">
+          <textPath href="#ymArcN" startOffset="50%" text-anchor="middle">YOSEMITE</textPath>
+        </text>
+        <path d="M21.5 41.6 L21.5 29.6 C21.5 22.6 26.4 17.6 32 17.6
+                 C37.6 17.6 42.5 22.6 42.5 41.6 Z" fill="currentColor" opacity=".88"/>
+        <path d="M12.6 41.6 l2.5-5.8 2.5 5.8 z" fill="currentColor" opacity=".55"/>
+        <path d="M46.4 41.6 l2.4-5.4 2.4 5.4 z" fill="currentColor" opacity=".55"/>
+        <path d="M9.6 42.1 H54.4" stroke="currentColor" stroke-width="1.1" opacity=".7"/>
+        <text x="32" y="52.6" font-family="Marcellus, serif" font-size="5.4"
+              fill="currentColor" text-anchor="middle" letter-spacing="1.05"
+              opacity=".78">EST. 1864</text>
+      </svg>
+      <span>
+        <b>优胜美地国家公园</b>
+        <span>YOSEMITE NATIONAL PARK</span>
+      </span>
+    </a>
+
+    <nav class="nav" aria-label="主导航">
+      <a href="#about">公园简介</a>
+      <a href="areas.html">代表区域</a>
+      <a href="scenery.html">公园风光</a>
+      <a href="plan.html">规划旅程</a>
+      <a href="seasons.html">四季游览</a>
+      <a href="news.html">公园动态</a>
+      <a href="tips.html">出行锦囊</a>
+      <button class="nav-search" aria-label="搜索"
+              data-toast="搜索功能演示：请前往 nps.gov 搜索完整内容">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>
+        </svg>
+      </button>
+    </nav>
+
+    <button class="burger" aria-label="打开菜单" data-drawer-open>
+      <i></i><i></i><i></i>
+    </button>
+  </div>
+</header>
+
+<!-- 移动端抽屉菜单 -->
+<div class="drawer" id="drawer" aria-hidden="true">
+  <button class="drawer-close" aria-label="关闭菜单" data-drawer-close>&times;</button>
+  <a href="#about">公园简介</a>
+  <a href="areas.html">代表区域</a>
+  <a href="scenery.html">公园风光</a>
+  <a href="plan.html">规划旅程</a>
+  <a href="seasons.html">四季游览</a>
+  <a href="news.html">公园动态</a>
+  <a href="tips.html">出行锦囊</a>
+</div>
+
+<!-- =========================================================
+     Banner 轮播
+     ========================================================= -->
+<div class="hero" data-section="首页">
+  <div class="slides">
+    <div class="slide active">
+      <img src="assets/banner-valley.jpg" alt="优胜美地谷草甸与花岗岩绝壁，黑熊穿行其间" fetchpriority="high">
+    </div>
+    <div class="slide">
+      <img src="assets/banner-halfdome.jpg" alt="日落时分的半圆顶，从冰川点远眺" loading="lazy">
+    </div>
+    <div class="slide">
+      <img src="assets/banner-falls.jpg" alt="春季融雪滋养的弗纳尔瀑布，水雾中横跨彩虹" loading="lazy">
+    </div>
+  </div>
+
+  <button class="hero-arrow prev" aria-label="上一张" data-hero="-1">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      <path d="m15 18-6-6 6-6"/>
+    </svg>
+  </button>
+  <button class="hero-arrow next" aria-label="下一张" data-hero="1">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      <path d="m9 18 6-6-6-6"/>
+    </svg>
+  </button>
+
+  <span class="hero-coord tl" aria-hidden="true">37.7456° N · 119.5936° W</span>
+  <span class="hero-coord tr" aria-hidden="true">EL CAPITAN · 2307m</span>
+  <span class="hero-coord bl" aria-hidden="true">EST. 1864</span>
+  <span class="hero-coord br" aria-hidden="true">YOSEMITE VALLEY · 1209m</span>
+
+  <div class="hero-inner" data-parallax="0.14" data-parallax-fade>
+    <div class="hero-kicker">California · Since 1864</div>
+    <h1>花岗岩与瀑布的圣殿</h1>
+    <p>这里不只是一座伟大的峡谷，更是人类远见的丰碑——花岗岩的力量、冰川的雕琢、生命的坚韧，与高塞拉山脉的宁静，皆汇聚于此。</p>
+    <div class="hero-btns">
+      <a class="btn btn-primary" href="#plan" data-magnetic>规划旅程</a>
+      <a class="btn btn-ghost" href="#about" data-magnetic>走进优胜美地</a>
+    </div>
+  </div>
+
+  <div class="scroll-cue" aria-hidden="true">
+    <span>Scroll</span>
+    <i></i>
+  </div>
+
+  <div class="dots" role="tablist" aria-label="轮播图切换">
+    <button class="active" aria-label="第 1 张" aria-current="true"></button>
+    <button aria-label="第 2 张"></button>
+    <button aria-label="第 3 张"></button>
+  </div>
+</div>
+
+<!-- =========================================================
+     警示条
+     ========================================================= -->
+<div class="alert-bar" id="alertBar">
+  <div class="wrap">
+    <span class="tri" aria-hidden="true">!</span>
+    <span>受森林火灾「多姆」影响，冰川点路段暂停对外开放</span>
+    <a href="#news">了解详情</a>
+    <button class="x" aria-label="关闭提示" data-alert-close>&times;</button>
+  </div>
+</div>
+
+<!-- =========================================================
+     公园简介
+     ========================================================= -->
+<section class="about" id="about" data-section="公园简介" data-reveal-group>
+  <!-- 装饰层：巨型水印文字，随滚动反向飘移 -->
+  <div class="deco-layer deco-word" data-parallax="0.55"
+       style="top:6%;left:-3%" aria-hidden="true">Yosemite</div>
+  <div class="deco-layer deco-ring" data-parallax="-0.38"
+       style="bottom:-8%;right:-4%" aria-hidden="true"></div>
+
+  <div class="wrap about-grid">
+    <div class="about-text">
+      <span class="sec-num" data-reveal="down">01</span>
+      <div class="eyebrow" data-reveal="down">About Yosemite</div>
+      <h2 data-split>走进优胜美地</h2>
+      <div class="sub" data-reveal="down">不只是一座峡谷，而是人类远见的丰碑</div>
+      <!-- 导语：四角标记 + 关键年份强调，作为整栏的视觉锚点 -->
+      <div class="about-lead" data-reveal="blur">
+        <span class="al-corner al-tr" aria-hidden="true"></span>
+        <span class="al-corner al-bl" aria-hidden="true"></span>
+        <p>优胜美地历史悠久，风景壮丽。公园最初于 <em>1864</em> 年设立，并于 <em>1890</em> 年成为美国国家公园，是全世界最早建立的几座自然保护区之一。优胜美地以气势恢宏的瀑布而闻名，崇山峻岭之间，藏着优胜美地瀑布（Yosemite Falls）、哨兵瀑布（Sentinel Falls）等悬崖飞瀑。</p>
+      </div>
+      <p data-reveal="blur">在瀑布之外，您还可以在优胜美地约 1200 平方英里（约 3000 平方公里）的广袤土地上，将幽深的峡谷、辽阔的草甸荒野与古老的巨型红杉尽收眼底。</p>
+      <p data-reveal="blur">您还能在优胜美地见证大自然的鬼斧神工：雄健英武的花岗岩、冰川刀砍斧凿般的绝壁与穹丘、岩峰和峭壁间的生命奇迹，以及山脉间亘古不变的宁静——它们都静候您的到来。</p>
+
+      <div class="about-stats">
+        <div data-reveal="up">
+          <b><span data-count="1864">1864</span></b>
+          <span>初建于（年）</span>
+        </div>
+        <div data-reveal="up">
+          <b><i class="approx" aria-hidden="true">约</i><span data-count="3080">3080</span></b>
+          <span>占地（平方公里）</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-box img-mask" data-reveal="mask" data-video>
+      <video class="video-el" poster="assets/video-poster.jpg"
+             preload="none" playsinline controls
+             aria-label="优胜美地国家公园宣传片">
+        <source src="assets/yosemite-film.mp4" type="video/mp4">
+        您的浏览器不支持视频播放，可前往
+        <a href="https://www.nps.gov/yose/index.htm" target="_blank" rel="noopener">nps.gov</a> 观看。
+      </video>
+      <button class="video-play" aria-label="播放优胜美地宣传片" data-video-play>
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff" aria-hidden="true">
+          <path d="M8 5v14l11-7z"/>
+        </svg>
+      </button>
+      <div class="video-cap">观看优胜美地 · WATCH YOSEMITE</div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     代表区域
+     ========================================================= -->
+<section class="areas" id="areas" data-section="代表区域" data-reveal-group>
+  <div class="deco-layer deco-word" data-parallax="-0.4"
+       style="bottom:2%;right:-6%" aria-hidden="true">Granite</div>
+
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num" data-reveal="down">02</span>
+      <div class="eyebrow" data-reveal="down">Signature Areas</div>
+      <h2 data-split>代表区域</h2>
+      <p data-reveal="up">冰川雕琢出的巨型花岗岩，与矗立千年的巨杉林，共同勾画出优胜美地最具特色的两大区域。</p>
+    </div>
+
+    <article class="area-card" data-reveal="up" data-spot>
+      <div class="area-img img-mask" data-reveal="mask">
+        <img src="assets/area-valley.jpg" alt="优胜美地谷的酋长岩花岗岩绝壁" loading="lazy">
+      </div>
+      <div class="area-body">
+        <h3 data-reveal="right">优胜美地谷</h3>
+        <div class="en" data-reveal="right">Yosemite Valley</div>
+        <p data-reveal="right">优胜美地谷是公园的最核心地带。坐拥世界上最大的花岗岩独石酋长岩，与北美最高的瀑布之一、落差高达 739 米的优胜美地瀑布。远处则坐落着整座公园的精神图腾——半圆顶。山脉瀑布之间，是交错相间的森林、草甸与默塞德河。</p>
+        <a class="view-more" href="areas.html#valley" data-reveal="right">查看更多 →</a>
+      </div>
+    </article>
+
+    <article class="area-card" data-reveal="up" data-spot>
+      <div class="area-img img-mask" data-reveal="mask">
+        <img src="assets/area-sequoia.jpg" alt="马里波萨巨杉林中参天的巨型红杉" loading="lazy">
+      </div>
+      <div class="area-body">
+        <h3 data-reveal="left">马里波萨巨杉林</h3>
+        <div class="en" data-reveal="left">Mariposa Grove of Giant Sequoias</div>
+        <p data-reveal="left">公园的南端坐落着一片由五百余棵巨型红杉构成的林地，许多树龄已超三千年，最高可达六十余米。巨型红杉形态各异，著名的「灰熊巨树」与中间可供人穿行的「加州隧道」均矗立林间。</p>
+        <a class="view-more" href="areas.html#mariposa" data-reveal="left">查看更多 →</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- =========================================================
+     公园风光
+     ========================================================= -->
+<section class="scenery" id="scenery" data-section="公园风光" data-reveal-group>
+  <div class="deco-layer deco-grid" data-parallax="0.22"
+       style="inset:0" aria-hidden="true"></div>
+
+  <div class="sec-head">
+    <span class="sec-num" data-reveal="down">03</span>
+    <div class="eyebrow" data-reveal="down">A Kingdom of Granite &amp; Water</div>
+    <h2 data-split>优胜美地风光</h2>
+    <p data-reveal="up">花岗岩上的国度——拖动卡片或双指横滑，浏览瀑布、绝壁、穹丘、草甸与古杉。</p>
+  </div>
+
+  <div class="scenery-rail" data-rail>
+    <div class="scene-card" data-reveal="zoom" data-spot>
+      <img src="assets/banner-falls.jpg" alt="弗纳尔瀑布与彩虹" loading="lazy">
+      <span>弗纳尔瀑布<small>VERNAL FALL</small></span>
+    </div>
+    <div class="scene-card" data-reveal="zoom" data-spot>
+      <img src="assets/sc-elcapitan.jpg" alt="酋长岩花岗岩独石" loading="lazy">
+      <span>酋长岩<small>EL CAPITAN</small></span>
+    </div>
+    <div class="scene-card" data-reveal="zoom" data-spot>
+      <img src="assets/sc-halfdome.jpg" alt="日落金光中的半圆顶" loading="lazy">
+      <span>半圆顶<small>HALF DOME</small></span>
+    </div>
+    <div class="scene-card" data-reveal="zoom" data-spot>
+      <img src="assets/banner-halfdome.jpg" alt="从冰川点远眺半圆顶与群山" loading="lazy">
+      <span>冰川点<small>GLACIER POINT</small></span>
+    </div>
+    <div class="scene-card" data-reveal="zoom" data-spot>
+      <img src="assets/sc-meadow.jpg" alt="高山草甸与远处的花岗岩山峰" loading="lazy">
+      <span>高山草甸<small>TUOLUMNE MEADOWS</small></span>
+    </div>
+    <div class="scene-card" data-reveal="zoom" data-spot>
+      <img src="assets/sc-sequoia.jpg" alt="巨杉林中的灰熊巨树" loading="lazy">
+      <span>巨杉古林<small>MARIPOSA GROVE</small></span>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     规划旅程
+     ========================================================= -->
+<section class="plan" id="plan" data-section="规划旅程" data-reveal-group>
+  <div class="deco-layer deco-word" data-parallax="0.5"
+       style="top:4%;left:-4%" aria-hidden="true">Explore</div>
+
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num" data-reveal="down">04</span>
+      <div class="eyebrow" data-reveal="down">Plan Your Visit</div>
+      <h2 data-split>规划旅程</h2>
+      <p data-reveal="up">晨望崖间瀑，夜宿林边树。各种「优胜美」体验，待您解锁。</p>
+    </div>
+
+    <div class="plan-grid">
+      <a class="plan-card big" href="waterfalls.html" data-reveal="up" data-spot>
+        <span class="pc-badge">最受欢迎</span>
+        <img src="assets/feat-falls.jpg" alt="优胜美地瀑布春季峰值水量" loading="lazy">
+        <div class="pc">
+          <div class="ic">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" aria-hidden="true">
+              <path d="M12 3c3 4.5 5 7.5 5 10.5a5 5 0 0 1-10 0C7 10.5 9 7.5 12 3z"/>
+            </svg>
+          </div>
+          <h4>瀑布指南</h4><small>WATERFALLS</small>
+        </div>
+      </a>
+
+      <a class="plan-card" href="camping.html" data-reveal="up" data-spot>
+        <img src="assets/feat-camping.jpg" alt="松林中的露营帐篷" loading="lazy">
+        <div class="pc"><h4>露营攻略</h4><small>CAMPING</small></div>
+      </a>
+
+      <a class="plan-card" href="lodging.html" data-reveal="up" data-spot>
+        <img src="assets/feat-lodge.jpg" alt="历史悠久的阿瓦尼酒店" loading="lazy">
+        <div class="pc"><h4>林间小住</h4><small>LODGING</small></div>
+      </a>
+
+      <a class="plan-card" href="permits.html" data-reveal="up" data-spot>
+        <img src="assets/sc-sequoia.jpg" alt="巨杉古林旁的荒野徒步区域" loading="lazy">
+        <div class="pc"><h4>荒野许可</h4><small>WILDERNESS PERMITS</small></div>
+      </a>
+
+      <a class="plan-card" href="permits.html#halfdome" data-reveal="up" data-spot>
+        <img src="assets/sc-halfdome.jpg" alt="半圆顶日落" loading="lazy">
+        <div class="pc"><h4>半圆顶许可</h4><small>HALF DOME PERMITS</small></div>
+      </a>
+
+      <a class="plan-card text-only" href="tips.html#bears" data-reveal="up" data-spot>
+        <img src="assets/feat-wildlife.jpg" alt="优胜美地森林中的野生动物栖息地" loading="lazy">
+        <div class="pc">
+          <h4>野生动物</h4><small>WILDLIFE</small>
+          <p>园内栖息着约 500 头黑熊及众多野生动物，观赏时请保持安全距离。</p>
+        </div>
+      </a>
+
+      <a class="plan-card text-only" href="tips.html#app" data-reveal="up" data-spot>
+        <img src="assets/nps.png" alt="美国国家公园管理局官方手机应用界面" loading="lazy">
+        <div class="pc">
+          <h4>NPS 官方应用</h4><small>NPS APP</small>
+          <p>一个应用，将所有国家公园装入口袋，支持地图、导览与离线访问。</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     四季游览
+     ========================================================= -->
+<section class="seasons" id="seasons" data-section="四季游览" data-reveal-group>
+  <div class="deco-layer deco-word" data-parallax="-0.45"
+       style="top:8%;right:-5%" aria-hidden="true">Seasons</div>
+
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num" data-reveal="down">05</span>
+      <div class="eyebrow" data-reveal="down">Yosemite Through the Seasons</div>
+      <h2 data-split>优胜美地之四季</h2>
+      <p data-reveal="up">四季轮转，花岗岩上的景色各不相同——春之瀑、夏之茂、秋之金、冬之雪。</p>
+    </div>
+
+    <div class="season-tabs" role="tablist" aria-label="四季切换" data-reveal="up">
+      <button class="active" role="tab" aria-selected="true">春之美</button>
+      <button role="tab" aria-selected="false">夏之美</button>
+      <button role="tab" aria-selected="false">秋之美</button>
+      <button role="tab" aria-selected="false">冬之美</button>
+    </div>
+
+    <div class="season-panel active">
+      <div class="img-mask" data-reveal="mask">
+        <img src="assets/season-spring.jpg" alt="春季夕阳下的优胜美地瀑布" loading="lazy">
+      </div>
+      <div data-reveal="right">
+        <h3>春之美 · 瀑布奔涌</h3>
+        <div class="en">SPRING</div>
+        <p>没有哪个季节比春天更适合观赏瀑布。随着山间积雪消融，大小瀑布迎来一年中最充沛的水量，优胜美地瀑布声震山谷。</p>
+        <p>此时气温宜人、野花初绽，是徒步与摄影的黄金时节，建议尽早出发避开人潮。</p>
+      </div>
+    </div>
+
+    <div class="season-panel">
+      <div class="img-mask" data-reveal="mask">
+        <img src="assets/season-summer.jpg" alt="夏季营地中林立的帐篷" loading="lazy">
+      </div>
+      <div data-reveal="right">
+        <h3>夏之美 · 万物繁茂</h3>
+        <div class="en">SUMMER</div>
+        <p>夏季的优胜美地处处可去、事事可为，但也意味着拥挤的人潮。入口排队、交通拥堵、车位难求都可能发生，请提前规划。</p>
+        <p>高海拔的图奥勒米草甸与湖泊是避暑胜地，清晨与傍晚的光线最为动人。</p>
+      </div>
+    </div>
+
+    <div class="season-panel">
+      <div class="img-mask" data-reveal="mask">
+        <img src="assets/season-autumn.jpg" alt="秋季金黄草甸与木栈道，远处瀑布环绕" loading="lazy">
+      </div>
+      <div data-reveal="right">
+        <h3>秋之美 · 金色静谧</h3>
+        <div class="en">AUTUMN</div>
+        <p>夏日人潮散去，气温转凉，林间与草甸染上层层金色。纪念碑般的山水仿佛重归宁静，常常可以独享。</p>
+        <p>季初仍可经由蒂奥加山口进入高地；需注意谷中部分瀑布逐渐进入枯水期。</p>
+      </div>
+    </div>
+
+    <div class="season-panel">
+      <div class="img-mask" data-reveal="mask">
+        <img src="assets/season-winter.jpg" alt="冬季冰雪覆盖的弗纳尔瀑布与步道" loading="lazy">
+      </div>
+      <div data-reveal="right">
+        <h3>冬之美 · 雪落山谷</h3>
+        <div class="en">WINTER</div>
+        <p>当白雪覆盖山谷，冰封的瀑布与雾凇林构成静谧的童话世界，是淡季造访的绝佳理由。</p>
+        <p>优胜美地谷冬季仍可抵达，但冰川点路、蒂奥加路等高山道路常因积雪封闭，出行前请查询路况。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     公园动态
+     ========================================================= -->
+<section class="news" id="news" data-section="公园动态" data-reveal-group>
+  <div class="deco-layer deco-ring" data-parallax="0.42"
+       style="top:12%;left:-6%" aria-hidden="true"></div>
+
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num" data-reveal="down">06</span>
+      <div class="eyebrow" data-reveal="down">Park News</div>
+      <h2 data-split>公园动态</h2>
+      <p data-reveal="up">了解公园实时状况、道路开放与重要提醒，出行前请再次核对官方信息。</p>
+    </div>
+
+    <div class="news-grid">
+      <figure class="news-feature" data-reveal="left" data-spot>
+        <div class="img-mask" data-reveal="mask">
+          <img src="assets/news-main.jpg" alt="冬季高山绝壁，冰川点方向" loading="lazy">
+        </div>
+        <span class="tag">重要提醒</span>
+        <figcaption>冰川点路受多姆火灾影响临时关闭
+          <small>受多姆火灾（Dome Fire）影响，冰川点路（Glacier Point Road）临时关闭，冰川点景区暂无法抵达。请关注 NPS 官方通告，待火势控制、道路安全评估通过后再行开放。</small>
+        </figcaption>
+      </figure>
+
+      <ul class="news-list">
+        <li data-reveal="right">
+          <a href="seasons.html#summer">
+            <span class="date">夏季游览 · SUMMER</span>
+            <h4>夏季游览优胜美地：机会众多，务必备好人潮预案</h4>
+            <p>夏季可去之处、可做之事极多，但需为拥挤、排队与停车难做好准备，尽早规划。</p>
+          </a>
+        </li>
+        <li data-reveal="right">
+          <a href="news.html#conditions">
+            <span class="date">当前状况 · CONDITIONS</span>
+            <h4>查询入口排队、道路步道、空气质量等实时状况</h4>
+            <p>出发前查看入口站等待时间、道路与步道开放情况、空气质量及其他及时更新。</p>
+          </a>
+        </li>
+        <li data-reveal="right">
+          <a href="news.html#traffic">
+            <span class="date">园内交通 · TRAFFIC</span>
+            <h4>优胜美地是繁忙之地：交通拥堵与停车提示</h4>
+            <p>您可能遭遇堵车、入口排队或找不到车位，请合理安排时间与行程。</p>
+          </a>
+        </li>
+        <li data-reveal="right">
+          <a href="news.html#pets">
+            <span class="date">携带宠物 · PETS</span>
+            <h4>想带四条腿的朋友同行？先了解宠物政策</h4>
+            <p>公园对宠物可进入的区域与步道有明确规定，出行前请仔细阅读相关政策。</p>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     出行锦囊
+     ========================================================= -->
+<section class="tips" id="tips" data-section="出行锦囊" data-reveal-group>
+  <div class="deco-layer deco-word" data-parallax="0.48"
+       style="bottom:4%;left:-4%" aria-hidden="true">Essentials</div>
+
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num" data-reveal="down">07</span>
+      <div class="eyebrow" data-reveal="down">Essentials</div>
+      <h2 data-split>出行锦囊</h2>
+      <p data-reveal="up">从许可预约到票务交通，一站式备齐出行所需。</p>
+    </div>
+
+    <div class="tips-grid">
+      <a class="tip" href="permits.html" data-reveal="up" data-spot>
+        <div class="tic">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+            <rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/><path d="M9 14l2 2 4-4"/>
+          </svg>
+        </div>
+        <h4>许可预约</h4><small>许可证申请</small>
+      </a>
+
+      <a class="tip" href="news.html#traffic" data-reveal="up" data-spot>
+        <div class="tic">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+            <rect x="4" y="4" width="16" height="13" rx="2"/><path d="M4 12h16M7 17v2M17 17v2"/>
+            <circle cx="8" cy="14.5" r=".8" fill="currentColor"/><circle cx="16" cy="14.5" r=".8" fill="currentColor"/>
+          </svg>
+        </div>
+        <h4>交通指南</h4><small>路线与班车</small>
+      </a>
+
+      <a class="tip" href="tips.html#fees" data-reveal="up" data-spot>
+        <div class="tic">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+            <path d="M4 7a2 2 0 0 1 2-2h9l5 5v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/>
+            <circle cx="12" cy="13" r="2.6"/><path d="M12 10.4V9m0 8v-1.4"/>
+          </svg>
+        </div>
+        <h4>票务费用</h4><small>门票与年票</small>
+      </a>
+
+      <a class="tip" href="tips.html#safety" data-reveal="up" data-spot>
+        <div class="tic">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+            <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/>
+          </svg>
+        </div>
+        <h4>游玩须知</h4><small>安全与规定</small>
+      </a>
+
+      <a class="tip" href="tips.html#app" data-reveal="up" data-spot>
+        <div class="tic">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+            <path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2zM9 4v14M15 6v14"/>
+          </svg>
+        </div>
+        <h4>地图导览</h4><small>分区地图</small>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     页脚
+     ========================================================= -->
+<footer class="footer">
+  <div class="footer-watermark" aria-hidden="true">YOSEMITE</div>
+  <div class="footer-badge" aria-hidden="true">
+      <svg class="badge" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+        <circle cx="32" cy="32" r="30.4" stroke="currentColor" stroke-width="1.4" opacity=".72"/>
+        <circle cx="32" cy="32" r="26.8" stroke="currentColor" stroke-width=".6" opacity=".36"/>
+        <path id="ymArcF" d="M10.39 24.13 A23 23 0 0 1 53.61 24.13" fill="none"/>
+        <text font-family="Marcellus, serif" font-size="6.1" fill="currentColor"
+              letter-spacing="1.05" opacity=".92">
+          <textPath href="#ymArcF" startOffset="50%" text-anchor="middle">YOSEMITE</textPath>
+        </text>
+        <path d="M21.5 41.6 L21.5 29.6 C21.5 22.6 26.4 17.6 32 17.6
+                 C37.6 17.6 42.5 22.6 42.5 41.6 Z" fill="currentColor" opacity=".88"/>
+        <path d="M12.6 41.6 l2.5-5.8 2.5 5.8 z" fill="currentColor" opacity=".55"/>
+        <path d="M46.4 41.6 l2.4-5.4 2.4 5.4 z" fill="currentColor" opacity=".55"/>
+        <path d="M9.6 42.1 H54.4" stroke="currentColor" stroke-width="1.1" opacity=".7"/>
+        <text x="32" y="52.6" font-family="Marcellus, serif" font-size="5.4"
+              fill="currentColor" text-anchor="middle" letter-spacing="1.05"
+              opacity=".78">EST. 1864</text>
+      </svg>
+  </div>
+  <div class="wrap footer-grid">
+    <div>
+      <h5>联系优胜美地</h5>
+      <p class="hotline">209 / 372-0200</p>
+      <p>地址：Yosemite National Park, California, U.S.A.<br>美国加利福尼亚州 优胜美地国家公园</p>
+      <p>开放时间：全年开放，部分高山道路季节性封闭</p>
+    </div>
+
+    <div>
+      <h5>快速入口</h5>
+      <ul>
+        <li><a href="#about">公园简介</a></li>
+        <li><a href="#plan">规划旅程</a></li>
+        <li><a href="#seasons">四季游览</a></li>
+        <li><a href="#news">公园动态</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h5>实用工具</h5>
+      <ul>
+        <li><a href="#tips">出行锦囊</a></li>
+        <li><a href="news.html#conditions">实时状况查询</a></li>
+        <li><a href="tips.html#app">NPS 官方应用</a></li>
+        <li><a href="https://www.nps.gov/yose/index.htm" target="_blank" rel="noopener">访问官方网站 nps.gov</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-note">
+    本站为面向中文游客的信息参考站，内容编译自美国国家公园管理局（NPS）公开资料，非官方网站，不代表 NPS 立场；行程与票务请以 nps.gov 官方最新信息为准。<br>
+    Yosemite National Park · Experience Your America.
+  </div>
+</footer>
+
+<!-- =========================================================
+     悬浮工具栏
+     ========================================================= -->
+<div class="floatbar">
+  <a class="fb-btn" href="tel:2093720200" aria-label="电话咨询">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" aria-hidden="true">
+      <path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/>
+    </svg>
+    <span class="pop">209 / 372-0200</span>
+  </a>
+
+  <div class="fb-btn" aria-label="官方二维码">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" aria-hidden="true">
+      <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+      <rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3M21 14v7h-4"/>
+    </svg>
+    <img class="qr" alt="二维码占位"
+         src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='white'/%3E%3Cg fill='%231B3A2C'%3E%3Crect x='8' y='8' width='24' height='24'/%3E%3Crect x='68' y='8' width='24' height='24'/%3E%3Crect x='8' y='68' width='24' height='24'/%3E%3Crect x='40' y='8' width='8' height='8'/%3E%3Crect x='8' y='40' width='8' height='8'/%3E%3Crect x='40' y='40' width='20' height='8'/%3E%3Crect x='40' y='52' width='8' height='20'/%3E%3Crect x='52' y='52' width='20' height='8'/%3E%3Crect x='60' y='64' width='8' height='8'/%3E%3Crect x='76' y='44' width='16' height='8'/%3E%3Crect x='60' y='80' width='16' height='12'/%3E%3Crect x='80' y='76' width='12' height='16'/%3E%3C/g%3E%3Cg fill='white'%3E%3Crect x='14' y='14' width='12' height='12'/%3E%3Crect x='74' y='14' width='12' height='12'/%3E%3Crect x='14' y='74' width='12' height='12'/%3E%3C/g%3E%3C/svg%3E">
+  </div>
+
+  <a class="fb-btn" href="https://www.nps.gov/yose/index.htm" target="_blank" rel="noopener" aria-label="联系表单">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" aria-hidden="true">
+      <rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>
+    </svg>
+    <span class="pop">通过 nps.gov 联系表单</span>
+  </a>
+
+  <button class="fb-btn to-top" id="toTop" aria-label="返回顶部">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" aria-hidden="true">
+      <path d="m6 14 6-6 6 6"/>
+    </svg>
+  </button>
+</div>
+
+<!-- 轻提示容器 -->
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<!-- 交互脚本 -->
+<script src="js/main.js"></script>
+<!-- 动效引擎（在交互脚本之后加载，接管滚动动效） -->
+<script src="js/motion.js"></script>
+</body>
+</html>

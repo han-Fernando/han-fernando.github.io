@@ -1,0 +1,597 @@
+/* =========================================================
+   优胜美地国家公园 · Yosemite National Park（中文信息站）
+   样式表 style.css
+   ---------------------------------------------------------
+   目录：
+   01. 设计变量（Design Tokens）
+   02. 基础重置与通用排版
+   03. 顶部导航 + 移动端抽屉
+   04. Banner 轮播（Hero）
+   05. 警示条
+   06. 公园简介（About）
+   07. 代表区域（Areas）
+   08. 公园风光横向滑动（Scenery）
+   09. 规划旅程（Plan）
+   10. 四季游览 Tab（Seasons）
+   11. 公园动态（News）
+   12. 出行锦囊（Tips）
+   13. 页脚（Footer）
+   14. 悬浮工具栏 + Toast
+   15. 滚动入场动画
+   16. 响应式适配（960px / 480px）
+   ========================================================= */
+
+/* =========================================================
+   01. 设计变量
+   ========================================================= */
+:root{
+  /* ---- 主色 ---- */
+  --pine:#1B3A2C;          /* 深松林绿：导航 / 页脚 */
+  --pine-2:#24503C;        /* 松林绿浅阶 */
+  --cream:#F5F1E6;         /* 米白：页面背景 */
+  --cream-2:#EFE8D8;       /* 米白深阶：交替区块 */
+  --sequoia:#8A5428;       /* 巨杉棕：英文眉题 */
+  --granite:#3E423F;       /* 花岗岩深灰：正文 */
+  --lake:#27606B;          /* 高山湖蓝绿：规划区块 */
+  --lake-deep:#1B474F;     /* 湖蓝深阶 */
+  --ember:#C4622A;         /* 秋色强调（克制使用） */
+  --ink:#22281F;           /* 标题墨色 */
+  --white:#FFFFFF;
+  --line:rgba(27,58,44,.14);
+  --shadow:0 14px 34px rgba(20,35,27,.14);
+  --shadow-sm:0 6px 16px rgba(15,30,22,.18);
+
+  /* ---- 字体 ---- */
+  --serif:"Noto Serif SC","Songti SC","STSong",serif;
+  --sans:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+  --latin:"Marcellus","Times New Roman",serif;
+
+  /* ---- 布局 ---- */
+  --nav-h:74px;
+  --radius:4px;
+  --ease:.25s cubic-bezier(.4,0,.2,1);
+}
+
+/* =========================================================
+   02. 基础重置与通用排版
+   ========================================================= */
+*{margin:0;padding:0;box-sizing:border-box}
+
+html{
+  scroll-behavior:smooth;
+  /* 锚点跳转时避开固定导航高度 */
+  scroll-padding-top:var(--nav-h);
+}
+
+body{
+  font-family:var(--sans);
+  color:var(--granite);
+  background:var(--cream);
+  line-height:1.8;
+  font-size:16px;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  overflow-x:hidden;
+}
+
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+
+/* 无障碍：键盘聚焦轮廓 */
+:focus-visible{outline:2px solid var(--ember);outline-offset:3px}
+
+/* 通用容器：最大 1200px，两侧留 4% 安全边距 */
+.wrap{width:min(1200px,92%);margin:0 auto}
+
+/* 英文眉题（石刻感大写拉丁字母） */
+.eyebrow{
+  font-family:var(--latin);
+  font-size:clamp(20px,2.4vw,30px);
+  letter-spacing:.14em;
+  color:var(--sequoia);
+  text-transform:uppercase;
+  line-height:1.2;
+}
+
+/* 区块标题组 */
+.sec-head{text-align:center;margin-bottom:46px}
+.sec-head h2{
+  font-family:var(--serif);
+  font-weight:700;
+  font-size:clamp(26px,3.4vw,40px);
+  color:var(--ink);
+  margin:10px 0 12px;
+  letter-spacing:.04em;
+}
+.sec-head p{color:#6a6f68;max-width:680px;margin:0 auto;font-size:15px}
+
+section{padding:78px 0}
+
+/* 屏幕阅读器专用文本 */
+.sr-only{
+  position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+  overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;
+}
+
+/* =========================================================
+   03. 顶部导航 + 移动端抽屉
+   ========================================================= */
+.topbar{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(27,58,44,.96);
+  border-bottom:1px solid rgba(245,241,230,.12);
+  transition:background .3s,box-shadow .3s;
+  backdrop-filter:blur(6px);
+}
+/* 页面滚动后加深背景，增强可读性 */
+.topbar.scrolled{background:rgba(21,46,34,.99);box-shadow:0 6px 22px rgba(10,22,16,.28)}
+
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;height:var(--nav-h)}
+
+.brand{display:flex;align-items:center;gap:12px;color:var(--cream)}
+.brand svg{width:42px;height:42px;flex:none}
+.brand b{display:block;font-family:var(--serif);font-size:19px;font-weight:700;letter-spacing:.12em;line-height:1.25}
+.brand span{display:block;font-family:var(--latin);font-size:11px;letter-spacing:.22em;opacity:.78}
+
+.nav{display:flex;align-items:center;gap:6px}
+.nav a{
+  color:rgba(245,241,230,.88);
+  font-size:15px;
+  padding:10px 13px;
+  position:relative;
+  letter-spacing:.06em;
+  transition:color .2s;
+}
+/* 悬停下划线：由左向右展开 */
+.nav a::after{
+  content:"";position:absolute;left:13px;right:13px;bottom:4px;height:2px;
+  background:var(--ember);transform:scaleX(0);transform-origin:left;transition:transform var(--ease);
+}
+.nav a:hover{color:#fff}
+.nav a:hover::after{transform:scaleX(1)}
+/* 当前所在区块高亮 */
+.nav a.active{color:#fff}
+.nav a.active::after{transform:scaleX(1)}
+
+.nav-search{
+  width:36px;height:36px;border:1px solid rgba(245,241,230,.35);border-radius:50%;
+  display:grid;place-items:center;color:var(--cream);margin-left:8px;
+  transition:background var(--ease);
+}
+.nav-search:hover{background:rgba(245,241,230,.12)}
+
+.burger{display:none;width:44px;height:44px;flex-direction:column;justify-content:center;gap:6px;align-items:center}
+.burger i{width:24px;height:2px;background:var(--cream);display:block;transition:.3s}
+
+/* 移动端抽屉菜单 */
+.drawer{
+  position:fixed;inset:0;z-index:110;background:rgba(27,58,44,.985);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
+  opacity:0;visibility:hidden;pointer-events:none;
+  transition:opacity .3s,visibility .3s;
+}
+.drawer.open{opacity:1;visibility:visible;pointer-events:auto}
+.drawer a{color:var(--cream);font-family:var(--serif);font-size:23px;padding:11px 20px;letter-spacing:.14em;transition:color .2s}
+.drawer a:hover{color:var(--ember)}
+.drawer-close{position:absolute;top:20px;right:22px;color:var(--cream);font-size:34px;line-height:1;width:48px;height:48px}
+
+/* =========================================================
+   04. Banner 轮播（Hero）
+   ========================================================= */
+.hero{position:relative;height:100vh;min-height:600px;overflow:hidden;background:#0d1f17}
+
+.slides{position:absolute;inset:0}
+.slide{position:absolute;inset:0;opacity:0;transition:opacity 1.1s ease}
+.slide.active{opacity:1}
+/* Ken Burns 缓慢推近效果 */
+.slide img{
+  width:100%;height:100%;object-fit:cover;object-position:center 35%;
+  transform:scale(1.02);
+}
+.slide.active img{animation:kenburns 12s ease-out forwards}
+@keyframes kenburns{
+  from{transform:scale(1.02)}
+  to{transform:scale(1.11)}
+}
+/* 上下渐变压暗，保证文字可读 */
+.slide::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(10,25,18,.38) 0%,rgba(10,25,18,.12) 45%,rgba(10,25,18,.62) 100%);
+}
+
+.hero-inner{
+  position:relative;z-index:3;height:100%;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;text-align:center;color:var(--cream);padding:0 20px;
+}
+.hero-kicker{font-family:var(--latin);letter-spacing:.34em;font-size:14px;opacity:.9;text-transform:uppercase}
+.hero-inner h1{
+  font-family:var(--serif);font-weight:900;
+  font-size:clamp(34px,6vw,68px);line-height:1.25;margin:16px 0 18px;
+  text-shadow:0 4px 26px rgba(0,0,0,.45);letter-spacing:.06em;
+}
+.hero-inner p{
+  max-width:720px;font-size:clamp(15px,1.5vw,18px);font-weight:300;
+  color:rgba(245,241,230,.92);
+}
+.hero-btns{display:flex;gap:16px;margin-top:34px;flex-wrap:wrap;justify-content:center}
+
+/* 通用按钮 */
+.btn{
+  display:inline-block;padding:14px 34px;font-size:16px;letter-spacing:.1em;border-radius:2px;
+  transition:transform .2s,background .2s,border-color .2s;
+}
+.btn-primary{background:var(--ember);color:#fff}
+.btn-primary:hover{background:#a8501f;transform:translateY(-2px)}
+.btn-ghost{border:1.5px solid rgba(245,241,230,.85);color:var(--cream)}
+.btn-ghost:hover{background:rgba(245,241,230,.16);transform:translateY(-2px)}
+
+/* 轮播左右箭头 */
+.hero-arrow{
+  position:absolute;z-index:4;top:50%;transform:translateY(-50%);
+  width:52px;height:52px;border:1px solid rgba(245,241,230,.4);border-radius:50%;
+  color:var(--cream);display:grid;place-items:center;background:rgba(12,28,20,.25);
+  transition:background var(--ease);
+}
+.hero-arrow:hover{background:rgba(12,28,20,.55)}
+.hero-arrow.prev{left:26px}
+.hero-arrow.next{right:26px}
+
+/* 指示圆点 */
+.dots{position:absolute;z-index:4;bottom:30px;left:0;right:0;display:flex;justify-content:center;gap:10px}
+.dots button{width:11px;height:11px;border-radius:50%;background:rgba(245,241,230,.45);transition:.25s}
+.dots button.active{background:var(--cream);width:30px;border-radius:6px}
+
+/* =========================================================
+   05. 警示条
+   ========================================================= */
+.alert-bar{background:#FDF6E7;border-bottom:1px solid #ecd9a8}
+.alert-bar .wrap{display:flex;align-items:center;gap:14px;padding:14px 0;font-size:15px;color:#6b4d12}
+.alert-bar .tri{
+  flex:none;width:30px;height:30px;background:#E0A82E;color:#5c430a;border-radius:50%;
+  display:grid;place-items:center;font-weight:700;
+}
+.alert-bar a{color:var(--ember);font-weight:500;margin-left:6px;border-bottom:1px solid rgba(196,98,42,.5)}
+.alert-bar a:hover{color:#a8501f}
+.alert-bar .x{margin-left:auto;color:#9a7b3a;font-size:20px;padding:4px 8px}
+
+/* =========================================================
+   06. 公园简介（About）
+   ========================================================= */
+.about{background:var(--cream)}
+.about-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+.about-text .eyebrow{font-size:clamp(26px,3vw,38px)}
+.about-text h2{
+  font-family:var(--serif);font-weight:700;font-size:clamp(28px,3.6vw,44px);
+  color:var(--ink);margin:8px 0;letter-spacing:.05em;
+}
+.about-text .sub{
+  font-family:var(--serif);color:var(--sequoia);font-size:18px;margin-bottom:22px;letter-spacing:.08em;
+}
+.about-text p{margin-bottom:16px;color:#4c5149;font-size:15.5px;text-align:justify}
+
+.about-stats{display:flex;gap:52px;margin-top:36px;flex-wrap:wrap}
+.about-stats div{position:relative;padding-left:22px}
+.about-stats div::before{
+  content:"";position:absolute;left:0;top:6px;bottom:6px;width:4px;
+  border-radius:2px;background:linear-gradient(180deg,var(--ember),var(--sequoia));
+}
+.about-stats div b{display:block;line-height:1}
+.about-stats div b span{
+  font-family:var(--latin);font-weight:400;
+  /* 桌面 54px，窄屏自动收敛，避免溢出 */
+  font-size:clamp(38px,4.2vw,54px);
+  color:var(--pine);letter-spacing:.01em;
+  /* 数字用衬线体 + 轻微下沉阴影，形成"凸版"质感 */
+  text-shadow:0 2px 0 rgba(27,58,44,.10),0 10px 22px rgba(27,58,44,.16);
+}
+.about-stats div span{
+  display:block;margin-top:10px;font-size:14px;font-weight:500;
+  color:#6d736a;letter-spacing:.14em;
+}
+
+/* 窄屏：竖条与数字同步缩小，间距收紧 */
+@media (max-width:560px){
+  .about-stats{gap:30px;margin-top:28px}
+  .about-stats div{padding-left:16px}
+  .about-stats div::before{width:3px}
+  .about-stats div span{font-size:12.5px;letter-spacing:.1em;margin-top:8px}
+}
+
+/* 视频卡片 */
+.video-box{position:relative;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+.video-box img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.video-play{
+  position:absolute;inset:0;margin:auto;width:78px;height:78px;border-radius:50%;
+  background:rgba(27,58,44,.82);display:grid;place-items:center;
+  border:2px solid rgba(245,241,230,.9);
+  transition:transform var(--ease),background var(--ease);
+}
+.video-box:hover .video-play{transform:scale(1.1);background:var(--ember)}
+.video-play svg{margin-left:4px}
+.video-cap{
+  position:absolute;left:0;right:0;bottom:0;padding:30px 22px 16px;color:#fff;
+  font-family:var(--serif);font-size:17px;letter-spacing:.08em;
+  background:linear-gradient(transparent,rgba(8,20,14,.82));
+}
+
+/* =========================================================
+   07. 代表区域（Areas）
+   ========================================================= */
+.areas{background:var(--cream-2)}
+.area-card{
+  display:grid;grid-template-columns:1fr 1fr;gap:0;background:#fff;
+  border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);margin-bottom:40px;
+}
+/* 偶数卡片图文互换位置，形成左右交替节奏 */
+.area-card:nth-child(even) .area-img{order:2}
+.area-img img{width:100%;height:100%;object-fit:cover;min-height:320px}
+.area-body{padding:44px 46px;display:flex;flex-direction:column;justify-content:center}
+.area-body h3{font-family:var(--serif);font-size:27px;color:var(--ink);font-weight:700;letter-spacing:.05em;margin-bottom:6px}
+.area-body .en{font-family:var(--latin);font-size:13px;letter-spacing:.2em;color:var(--sequoia);margin-bottom:18px;text-transform:uppercase}
+.area-body p{font-size:15px;color:#555a53;margin-bottom:22px}
+
+.view-more{
+  align-self:flex-start;color:var(--pine);font-size:14px;letter-spacing:.14em;font-weight:500;
+  border-bottom:2px solid var(--ember);padding-bottom:4px;transition:color .2s;
+}
+.view-more:hover{color:var(--ember)}
+
+/* =========================================================
+   08. 公园风光横向滑动（Scenery）
+   ========================================================= */
+.scenery{background:var(--cream)}
+.scenery-rail{
+  display:flex;gap:22px;overflow-x:auto;padding:8px 4% 22px;
+  scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+}
+.scenery-rail::-webkit-scrollbar{height:6px}
+.scenery-rail::-webkit-scrollbar-thumb{background:rgba(27,58,44,.25);border-radius:3px}
+.scenery-rail::-webkit-scrollbar-track{background:rgba(27,58,44,.07)}
+
+.scene-card{
+  flex:0 0 300px;scroll-snap-align:start;position:relative;
+  border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);
+}
+.scene-card img{width:300px;height:380px;object-fit:cover;transition:transform .5s}
+.scene-card:hover img{transform:scale(1.07)}
+.scene-card::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 55%,rgba(8,20,14,.78))}
+.scene-card span{
+  position:absolute;z-index:2;left:20px;right:20px;bottom:18px;color:#fff;
+  font-family:var(--serif);font-size:20px;letter-spacing:.08em;
+}
+.scene-card span small{display:block;font-family:var(--latin);font-size:11px;letter-spacing:.2em;opacity:.75;margin-top:3px}
+
+/* =========================================================
+   09. 规划旅程（Plan）
+   ========================================================= */
+.plan{
+  background:linear-gradient(160deg,var(--lake) 0%,var(--lake-deep) 100%);
+  color:var(--cream);
+}
+.plan .sec-head h2{color:#fff}
+.plan .eyebrow{color:#E8B98A}
+.plan .sec-head p{color:rgba(245,241,230,.8)}
+
+.plan-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr;grid-auto-rows:230px;gap:18px}
+.plan-card{
+  position:relative;border-radius:var(--radius);overflow:hidden;cursor:pointer;
+  display:flex;align-items:flex-end;
+  text-decoration:none;color:inherit;
+}
+.plan-card.big{grid-row:span 2}
+/* 铺满卡片的图标/照片背景 */
+.plan-card > img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.plan-card:hover > img{transform:scale(1.06)}
+.plan-card::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 40%,rgba(6,22,26,.85))}
+.plan-card .pc{position:relative;z-index:2;padding:22px;color:#fff}
+.plan-card .pc .ic{
+  width:46px;height:46px;border:1.5px solid rgba(255,255,255,.85);border-radius:50%;
+  display:grid;place-items:center;margin-bottom:12px;background:rgba(10,40,46,.35);
+}
+.plan-card .pc h4{font-family:var(--serif);font-size:20px;letter-spacing:.07em}
+.plan-card .pc small{display:block;font-family:var(--latin);font-size:11px;letter-spacing:.2em;opacity:.78;margin-top:3px}
+
+/* 纯文字卡片：半透明底 + 细描边 */
+.plan-card.text-only{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18)}
+.plan-card.text-only .pc{padding:24px}
+.plan-card.text-only .pc h4{font-size:18px}
+.plan-card.text-only .pc p{font-size:13px;opacity:.82;margin-top:8px;line-height:1.6}
+
+/* =========================================================
+   10. 四季游览 Tab（Seasons）
+   ========================================================= */
+.seasons{background:var(--cream-2)}
+.season-tabs{display:flex;justify-content:center;gap:8px;margin-bottom:40px;flex-wrap:wrap}
+.season-tabs button{
+  padding:11px 34px;font-size:16px;letter-spacing:.14em;color:var(--pine);
+  border:1.5px solid rgba(27,58,44,.3);border-radius:2px;background:transparent;transition:var(--ease);
+}
+.season-tabs button.active,
+.season-tabs button:hover{background:var(--pine);color:var(--cream);border-color:var(--pine)}
+
+.season-panel{display:none;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+.season-panel.active{display:grid;animation:fadeUp .5s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.season-panel img{width:100%;height:400px;object-fit:cover;border-radius:var(--radius);box-shadow:var(--shadow)}
+.season-panel h3{font-family:var(--serif);font-size:28px;color:var(--ink);margin-bottom:6px}
+.season-panel .en{font-family:var(--latin);letter-spacing:.22em;color:var(--sequoia);font-size:13px;margin-bottom:18px}
+.season-panel p{color:#555a53;font-size:15.5px;margin-bottom:14px;text-align:justify}
+
+/* =========================================================
+   11. 公园动态（News）
+   ========================================================= */
+.news{background:var(--cream)}
+.news-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:44px;align-items:start}
+
+.news-feature{position:relative;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+.news-feature img{width:100%;height:420px;object-fit:cover}
+.news-feature .tag{
+  position:absolute;top:18px;left:18px;background:var(--ember);color:#fff;font-size:13px;
+  padding:5px 14px;letter-spacing:.1em;border-radius:2px;
+}
+.news-feature figcaption{padding:22px 4px 0;font-family:var(--serif);font-size:20px;color:var(--ink);line-height:1.5}
+.news-feature figcaption small{
+  display:block;font-family:var(--sans);font-size:13.5px;color:#7a7f77;
+  margin-top:10px;font-weight:400;line-height:1.7;
+}
+
+.news-list li{padding:20px 4px;border-bottom:1px solid var(--line)}
+.news-list li:last-child{border-bottom:none}
+.news-list a{display:block}
+.news-list .date{font-family:var(--latin);font-size:13px;color:var(--sequoia);letter-spacing:.1em}
+.news-list h4{font-size:17px;color:var(--ink);font-weight:500;margin:6px 0;transition:color .2s;line-height:1.5}
+.news-list a:hover h4{color:var(--ember)}
+.news-list p{font-size:13.5px;color:#80857d;line-height:1.65}
+
+/* =========================================================
+   12. 出行锦囊（Tips）
+   ========================================================= */
+.tips{background:var(--cream-2)}
+.tips-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:20px}
+.tip{
+  display:block;text-decoration:none;color:inherit;
+  text-align:center;padding:30px 14px;background:#fff;border-radius:var(--radius);
+  transition:transform var(--ease),box-shadow var(--ease);cursor:pointer;
+}
+.tip:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+.tip .tic{
+  width:62px;height:62px;margin:0 auto 16px;border-radius:50%;background:var(--cream);
+  display:grid;place-items:center;color:var(--pine);transition:background var(--ease),color var(--ease);
+}
+.tip:hover .tic{background:var(--pine);color:var(--cream)}
+.tip h4{font-family:var(--serif);font-size:17px;color:var(--ink);letter-spacing:.06em}
+.tip small{display:block;font-size:12px;color:#92978f;margin-top:4px}
+
+/* =========================================================
+   13. 页脚（Footer）
+   ========================================================= */
+.footer{background:var(--pine);color:rgba(245,241,230,.82);padding:60px 0 0}
+.footer-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:44px;padding-bottom:44px}
+.footer h5{font-family:var(--serif);color:#fff;font-size:18px;margin-bottom:18px;letter-spacing:.1em}
+.footer p,.footer li{font-size:14px;line-height:2.1}
+.footer a:hover{color:var(--ember)}
+.footer .hotline{font-family:var(--latin);font-size:26px;color:#E8B98A;letter-spacing:.08em}
+.footer-note{
+  border-top:1px solid rgba(245,241,230,.14);padding:20px 4%;
+  font-size:12.5px;color:rgba(245,241,230,.55);text-align:center;line-height:1.9;
+}
+
+/* =========================================================
+   14. 悬浮工具栏 + Toast
+   ========================================================= */
+.floatbar{position:fixed;right:18px;bottom:120px;z-index:90;display:flex;flex-direction:column;gap:10px}
+.fb-btn{
+  width:48px;height:48px;border-radius:50%;background:var(--pine);color:var(--cream);
+  display:grid;place-items:center;position:relative;box-shadow:var(--shadow-sm);
+  transition:background .2s;
+}
+.fb-btn:hover{background:var(--ember)}
+/* 悬停气泡文字 */
+.fb-btn .pop{
+  position:absolute;right:58px;top:50%;transform:translateY(-50%);white-space:nowrap;
+  background:#fff;color:var(--granite);font-size:13px;padding:8px 14px;border-radius:3px;
+  box-shadow:var(--shadow);opacity:0;pointer-events:none;transition:opacity .2s;
+}
+.fb-btn:hover .pop{opacity:1}
+/* 悬停二维码 */
+.fb-btn .qr{
+  position:absolute;right:58px;bottom:0;width:130px;height:130px;max-width:none;
+  background:#fff;padding:8px;border-radius:var(--radius);object-fit:contain;
+  opacity:0;pointer-events:none;transition:opacity .2s;
+}
+.fb-btn:hover .qr{opacity:1}
+
+/* 返回顶部：默认隐藏，滚动后出现 */
+.to-top{opacity:0;pointer-events:none;transition:opacity .3s}
+.to-top.show{opacity:1;pointer-events:auto}
+
+/* 轻提示 */
+.toast{
+  position:fixed;left:50%;bottom:60px;transform:translateX(-50%) translateY(20px);
+  background:var(--ink);color:#fff;padding:13px 28px;border-radius:3px;font-size:14.5px;
+  z-index:200;opacity:0;pointer-events:none;transition:.3s;max-width:88%;text-align:center;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* =========================================================
+   15. 滚动入场动画
+   ---------------------------------------------------------
+   注：完整动效系统已迁移至 motion.css + motion.js。
+   此处仅保留最小兜底，确保即使 motion 资源加载失败，
+   内容也不会因为 opacity:0 而不可见。
+   ========================================================= */
+
+/* =========================================================
+   16. 响应式适配
+   ========================================================= */
+/* ---- 平板 / 窄屏 ---- */
+@media (max-width:960px){
+  :root{--nav-h:66px}
+
+  .nav{display:none}
+  .burger{display:flex}
+
+  .hero{min-height:520px}
+  .hero-arrow{display:none}
+
+  .about-grid{grid-template-columns:1fr;gap:36px}
+
+  .area-card{grid-template-columns:1fr}
+  .area-card:nth-child(even) .area-img{order:0}
+  .area-img img{min-height:240px;aspect-ratio:16/10}
+  .area-body{padding:32px 26px}
+
+  .plan-grid{grid-template-columns:1fr 1fr;grid-auto-rows:200px}
+  .plan-card.big{grid-column:span 2;grid-row:span 1}
+
+  .season-panel.active{grid-template-columns:1fr;gap:26px}
+  .season-panel img{height:280px}
+
+  .news-grid{grid-template-columns:1fr;gap:34px}
+  .news-feature img{height:300px}
+
+  .tips-grid{grid-template-columns:repeat(2,1fr)}
+
+  .footer-grid{grid-template-columns:1fr;gap:32px}
+
+  .alert-bar .wrap{padding:12px 0;font-size:14px}
+
+  section{padding:58px 0}
+}
+
+/* ---- 手机 ---- */
+@media (max-width:480px){
+  body{font-size:15.5px}
+
+  .brand b{font-size:16px;letter-spacing:.08em}
+  .brand span{font-size:9.5px;letter-spacing:.16em}
+  .brand svg{width:36px;height:36px}
+
+  .drawer a{font-size:20px}
+
+  .hero-inner h1{font-size:clamp(28px,9vw,40px)}
+  .hero-btns{gap:12px}
+  .btn{padding:12px 26px;font-size:15px}
+
+  .plan-grid{grid-template-columns:1fr}
+  .plan-card.big{grid-column:span 1}
+
+  .tips-grid{grid-template-columns:1fr 1fr}
+
+  .scene-card{flex-basis:260px}
+  .scene-card img{width:260px;height:330px}
+
+  .season-tabs button{padding:9px 20px;font-size:14.5px}
+
+  .floatbar{right:12px;bottom:90px}
+  .fb-btn{width:42px;height:42px}
+  /* 小屏隐藏悬停气泡，避免溢出屏幕 */
+  .fb-btn .pop,.fb-btn .qr{display:none}
+
+  .toast{bottom:96px;font-size:13.5px;padding:11px 20px}
+
+  section{padding:48px 0}
+  .sec-head{margin-bottom:34px}
+}

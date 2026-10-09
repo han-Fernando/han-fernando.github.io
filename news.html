@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>公园动态 · 优胜美地国家公园</title>
+<meta name="description" content="优胜美地国家公园实时动态与重要提醒：道路封闭、火灾影响、入口拥堵、宠物政策与条件查询入口。">
+<meta name="keywords" content="优胜美地动态,路况,火灾,封闭,拥堵,宠物政策,公园新闻">
+<meta name="author" content="翻译2401 网站：刘知函 翻译：李昊霖 巨家泽">
+<meta name="theme-color" content="#1B3A2C">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231B3A2C'/%3E%3Cpath d='M6 24 L13 11 L17 18 L20 13 L26 24 Z' fill='%23F5F1E6'/%3E%3Ccircle cx='23' cy='8' r='2.4' fill='%23C4622A'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://miaoda.feishu.cn" crossorigin>
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Marcellus&family=Noto+Serif+SC:wght@500;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/motion.css">
+<link rel="stylesheet" href="css/pages.css">
+<!-- 设计升级：复古国家公园海报 × 杂志编辑感 -->
+<link rel="stylesheet" href="css/design-upgrade.css">
+</head>
+
+<body id="top" class="page">
+
+<!-- 纸张颗粒质感层 -->
+<div class="grain" aria-hidden="true"></div>
+<!-- 阅读进度细线 -->
+<div class="read-progress" aria-hidden="true"><i></i></div>
+
+<a class="sr-only" href="#main">跳到主要内容</a>
+
+<header class="topbar is-solid">
+  <div class="wrap">
+    <a class="brand" href="index.html#top" aria-label="优胜美地国家公园首页">
+      <svg class="badge" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+        <circle cx="32" cy="32" r="30.4" stroke="currentColor" stroke-width="1.4" opacity=".72"/>
+        <circle cx="32" cy="32" r="26.8" stroke="currentColor" stroke-width=".6" opacity=".36"/>
+        <path id="ymArcN" d="M10.39 24.13 A23 23 0 0 1 53.61 24.13" fill="none"/>
+        <text font-family="Marcellus, serif" font-size="6.1" fill="currentColor"
+              letter-spacing="1.05" opacity=".92">
+          <textPath href="#ymArcN" startOffset="50%" text-anchor="middle">YOSEMITE</textPath>
+        </text>
+        <path d="M21.5 41.6 L21.5 29.6 C21.5 22.6 26.4 17.6 32 17.6
+                 C37.6 17.6 42.5 22.6 42.5 41.6 Z" fill="currentColor" opacity=".88"/>
+        <path d="M12.6 41.6 l2.5-5.8 2.5 5.8 z" fill="currentColor" opacity=".55"/>
+        <path d="M46.4 41.6 l2.4-5.4 2.4 5.4 z" fill="currentColor" opacity=".55"/>
+        <path d="M9.6 42.1 H54.4" stroke="currentColor" stroke-width="1.1" opacity=".7"/>
+        <text x="32" y="52.6" font-family="Marcellus, serif" font-size="5.4"
+              fill="currentColor" text-anchor="middle" letter-spacing="1.05"
+              opacity=".78">EST. 1864</text>
+      </svg>
+      <span>
+        <b>优胜美地国家公园</b>
+        <span>YOSEMITE NATIONAL PARK</span>
+      </span>
+    </a>
+
+    <nav class="nav" aria-label="主导航">
+      <a href="index.html#about">公园简介</a>
+      <a href="areas.html">代表区域</a>
+      <a href="scenery.html">公园风光</a>
+      <a href="plan.html">规划旅程</a>
+      <a href="seasons.html">四季游览</a>
+      <a href="news.html" class="active">公园动态</a>
+      <a href="tips.html">出行锦囊</a>
+      <button class="nav-search" aria-label="搜索"
+              data-toast="搜索功能演示：请前往 nps.gov 搜索完整内容">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>
+        </svg>
+      </button>
+    </nav>
+
+    <button class="burger" aria-label="打开菜单" data-drawer-open>
+      <i></i><i></i><i></i>
+    </button>
+  </div>
+</header>
+
+<div class="drawer" id="drawer" aria-hidden="true">
+  <button class="drawer-close" aria-label="关闭菜单" data-drawer-close>&times;</button>
+  <a href="index.html#top">首页</a>
+  <a href="index.html#about">公园简介</a>
+  <a href="areas.html">代表区域</a>
+  <a href="scenery.html">公园风光</a>
+  <a href="plan.html">规划旅程</a>
+  <a href="seasons.html">四季游览</a>
+  <a href="news.html">公园动态</a>
+  <a href="tips.html">出行锦囊</a>
+</div>
+
+<section class="page-hero" data-section="公园动态">
+  <img src="assets/news-main.jpg" alt="冬季高山绝壁，冰川点方向" fetchpriority="high">
+  <span class="hero-coord tl" aria-hidden="true">37.7456° N · 119.5936° W</span>
+  <span class="hero-coord br" aria-hidden="true">YOSEMITE NATIONAL PARK · EST. 1864</span>
+  <div class="wrap">
+    <div class="eyebrow" data-reveal="down">Park News &amp; Conditions</div>
+    <h1 data-split>公园动态与实时状况</h1>
+    <p class="lede" data-reveal="up">
+      优胜美地的状况变化很快：一条路可能今天开明天关，一场火能改变整个区域的可达性。出发前查一次，比到了才发现要划算得多。
+    </p>
+
+    <div class="hero-facts" data-reveal="up">
+      <div><b>每日</b><span>路况更新</span></div>
+      <div><b>4类</b><span>主要提醒</span></div>
+      <div><b>911</b><span>园内紧急电话</span></div>
+      <div><b>提前1天</b><span>建议再确认</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="page-body">
+  <div class="wrap">
+    <nav class="crumb" aria-label="面包屑导航">
+      <a href="index.html">首页</a>
+      <span class="sep">/</span>
+      <span class="cur">公园动态</span>
+    </nav>
+  </div>
+
+  <div class="wrap">
+    <div class="doc-layout">
+
+      <aside class="doc-toc" aria-label="本页目录">
+        <h6>本文目录</h6>
+        <ol>
+          <li><a href="#alert">当前重要提醒</a></li>
+          <li><a href="#closures">道路与设施关闭</a></li>
+          <li><a href="#conditions">怎么查实时状况</a></li>
+          <li><a href="#traffic">交通与人潮</a></li>
+          <li><a href="#pets">宠物政策</a></li>
+          <li><a href="#subscribe">获取更新</a></li>
+        </ol>
+      </aside>
+
+      <main class="doc-main" id="main">
+
+
+        <section id="alert" data-reveal-group>
+          <h2 data-reveal="up">当前重要提醒</h2>
+          <div class="en-sub" data-reveal="up">Current Alerts</div>
+
+          <div class="note safety" data-reveal="up">
+            <div class="note-ic">!</div>
+            <div>
+              <strong>冰川点路临时关闭：</strong>受多姆火灾（Dome Fire）影响，
+              冰川点路（Glacier Point Road）曾一度关闭，冰川点景区暂时无法抵达。
+              请关注 NPS 官方通告，待道路安全评估通过后再行开放。
+            </div>
+          </div>
+
+          <p data-reveal="up">
+            园方会因<b>天气、火灾、道路施工或落石</b>随时调整通行安排。
+            下表中的提醒类型是最常见的几类，建议在出发前逐项核对。
+          </p>
+
+          <div class="card-grid" data-reveal="up">
+            <div class="info-card"><span class="num">01</span><h4>道路封闭</h4><p>冬季积雪、春季融雪与落石都会导致路段关闭，高地道路季节性封闭最明显。</p></div>
+            <div class="info-card"><span class="num">02</span><h4>火灾影响</h4><p>野火可能造成道路封闭、能见度下降与空气质量恶化，需留意烟雾提示。</p></div>
+            <div class="info-card"><span class="num">03</span><h4>施工延误</h4><p>道路维护常导致单向通行与长时间延误，尤其在非旺季。</p></div>
+            <div class="info-card"><span class="num">04</span><h4>步道关闭</h4><p>部分步道因维修、野生动物活动或危险状况临时关闭。</p></div>
+          </div>
+        </section>
+
+        <section id="closures" data-reveal-group>
+          <h2 data-reveal="up">道路与设施关闭规律</h2>
+          <div class="en-sub" data-reveal="up">Typical Closure Patterns</div>
+
+          <div class="table-wrap" data-reveal="up">
+            <table class="data">
+              <thead>
+                <tr>
+                  <th>路段 / 设施</th>
+                  <th>典型封闭期</th>
+                  <th>影响</th>
+                  <th>替代方案</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>蒂奥加路</td>
+                  <td>约 11 月 – 次年 6 月</td>
+                  <td>无法抵达图奥勒米草甸与东部出口</td>
+                  <td>改走西门或南门进出</td>
+                </tr>
+                <tr>
+                  <td>冰川点路</td>
+                  <td>降雪期 + 火灾等突发状况</td>
+                  <td>无法上冰川点俯瞰全谷</td>
+                  <td>改在隧道观景台拍摄谷景</td>
+                </tr>
+                <tr>
+                  <td>马里波萨巨杉林接驳车</td>
+                  <td>冬季停运</td>
+                  <td>需自行步行进入林中</td>
+                  <td>冬季通常仍可步行抵达部分巨杉</td>
+                </tr>
+                <tr>
+                  <td>谷底部分步道</td>
+                  <td>视维修与危险状况</td>
+                  <td>个别观景点无法抵达</td>
+                  <td>改走平行线路或草甸环线</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="note" data-reveal="up">
+            <div class="note-ic">!</div>
+            <div>
+              上表是<b>常见规律</b>而非承诺。每年开放与封闭的具体日期都可能不同，
+              请以官方实时公告为准。
+            </div>
+          </div>
+        </section>
+
+        <section id="conditions" data-reveal-group>
+          <h2 data-reveal="up">怎么查实时状况</h2>
+          <div class="en-sub" data-reveal="up">Checking Conditions</div>
+
+          <p data-reveal="up">
+            出发前一晚与当天早上各看一次，能避开绝大多数"白跑一趟"的意外。
+            重点关注以下四类信息：
+          </p>
+
+          <ol class="steps" data-reveal="up">
+            <li><strong>道路开放状态：</strong>确认你要走的入口与园内道路是否通行、是否需要防滑链。</li>
+            <li><strong>入口排队时间：</strong>旺季入口可能排队 1 小时以上，调整出发时间可显著改善体验。</li>
+            <li><strong>空气质量与烟雾：</strong>火灾季需关注烟霾对能见度与呼吸的影响。</li>
+            <li><strong>步道与营地状态：</strong>确认目标步道是否开放、营地是否可用。</li>
+          </ol>
+
+          <div class="note info" data-reveal="up">
+            <div class="note-ic">i</div>
+            <div>
+              权威信息请以 <b>nps.gov/yose</b> 的"Current Conditions"页面为准。
+              本页仅作汇总说明，不提供实时数据。
+            </div>
+          </div>
+        </section>
+
+        <section id="traffic" data-reveal-group>
+          <h2 data-reveal="up">交通与人潮</h2>
+          <div class="en-sub" data-reveal="up">Traffic &amp; Crowds</div>
+
+          <div class="media-row" data-reveal="up">
+            <div class="media-img">
+              <img src="assets/feat-camping.jpg" alt="园区道路与松林" loading="lazy">
+            </div>
+            <div class="media-txt">
+              <h3>优胜美地是繁忙之地</h3>
+              <p>
+                在 7–8 月的周末，谷底可能出现持续的交通拥堵，
+                入口排队一小时、绕半小时找不到车位都是常态。
+              </p>
+              <p>
+                最有效的应对是<b>早进园、停在大型停车场、改乘免费班车</b>。
+                另外，把游览重心放到非谷底区域，也能明显避开人潮。
+              </p>
+            </div>
+          </div>
+
+          <ul class="bullets" data-reveal="up">
+            <li><strong>清晨进园：</strong>上午 7 点前抵达入口，通常能避开排队高峰。</li>
+            <li><strong>善用班车：</strong>谷底班车免费，可省掉反复挪车的麻烦。</li>
+            <li><strong>避开周末：</strong>工作日的游客量通常显著低于周末。</li>
+            <li><strong>备好停车方案：</strong>若主停车场已满，注意不要占用非停车区域。</li>
+          </ul>
+        </section>
+
+        <section id="pets" data-reveal-group>
+          <h2 data-reveal="up">宠物政策</h2>
+          <div class="en-sub" data-reveal="up">Pets in the Park</div>
+
+          <p data-reveal="up">
+            想带四条腿的朋友同行？可以，但限制比多数人预期的严格。
+            在优胜美地，宠物<b>不能进入步道、草甸与荒野区域</b>。
+          </p>
+
+          <div class="table-wrap" data-reveal="up">
+            <table class="data">
+              <thead>
+                <tr>
+                  <th>区域</th>
+                  <th>宠物可否进入</th>
+                  <th>约束条件</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>铺装道路与停车场</td>
+                  <td>可以</td>
+                  <td>必须牵绳，绳长通常不超过 2 米</td>
+                </tr>
+                <tr>
+                  <td>已开发营地</td>
+                  <td>可以</td>
+                  <td>须牵绳，不得无人看管，不得留在营地外</td>
+                </tr>
+                <tr>
+                  <td>步道与草甸</td>
+                  <td>不可以</td>
+                  <td>含多数景观步道在内，一律禁止</td>
+                </tr>
+                <tr>
+                  <td>荒野与偏远区域</td>
+                  <td>不可以</td>
+                  <td>为保护野生动物与生态，全面禁止</td>
+                </tr>
+                <tr>
+                  <td>园内住宿</td>
+                  <td>视具体规定</td>
+                  <td>多数有单独限制，预定时请确认</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="note" data-reveal="up">
+            <div class="note-ic">!</div>
+            <div>
+              宠物在任何情况下都<b>不得无人看管</b>，也不得留在车内高温环境中。
+              违规可能面临处罚，请提前为宠物安排寄养或调整行程。
+            </div>
+          </div>
+        </section>
+
+        <section id="subscribe" data-reveal-group>
+          <h2 data-reveal="up">获取更新</h2>
+          <div class="en-sub" data-reveal="up">Stay Updated</div>
+
+          <ul class="bullets" data-reveal="up">
+            <li><strong>官方网站：</strong>nps.gov/yose 是最权威、更新最及时的信息源。</li>
+            <li><strong>官方应用：</strong>NPS App 提供道路状态、营地信息与离线地图。</li>
+            <li><strong>电话咨询：</strong>园方总机 209 / 372-0200，适合行前确认路况。</li>
+            <li><strong>社交媒体：</strong>园方账号会发布临时封闭与紧急通告。</li>
+          </ul>
+
+          <div class="note info" data-reveal="up">
+            <div class="note-ic">i</div>
+            <div>
+              本页为信息汇总页，内容编译自 NPS 公开资料，
+              <strong>不提供实时数据，也不能替代官方公告</strong>。
+              所有出行决策请以 nps.gov 为准。
+            </div>
+          </div>
+          <div data-reveal="up" style="margin-top:34px">
+            <a class="back-home" href="index.html#news">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="m15 18-6-6 6-6"/>
+              </svg>
+              返回首页 · 公园动态
+            </a>
+          </div>
+
+          <nav class="page-nav" aria-label="页面导航">
+            <a class="prev" href="seasons.html">
+              <span class="dir">← 上一项</span>
+              <span class="ttl">四季游览</span>
+            </a>
+            <a class="next" href="tips.html">
+              <span class="dir">下一项 →</span>
+              <span class="ttl">出行锦囊</span>
+            </a>
+          </nav>
+        </section>
+
+      </main>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-watermark" aria-hidden="true">YOSEMITE</div>
+  <div class="footer-badge" aria-hidden="true">
+      <svg class="badge" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+        <circle cx="32" cy="32" r="30.4" stroke="currentColor" stroke-width="1.4" opacity=".72"/>
+        <circle cx="32" cy="32" r="26.8" stroke="currentColor" stroke-width=".6" opacity=".36"/>
+        <path id="ymArcF" d="M10.39 24.13 A23 23 0 0 1 53.61 24.13" fill="none"/>
+        <text font-family="Marcellus, serif" font-size="6.1" fill="currentColor"
+              letter-spacing="1.05" opacity=".92">
+          <textPath href="#ymArcF" startOffset="50%" text-anchor="middle">YOSEMITE</textPath>
+        </text>
+        <path d="M21.5 41.6 L21.5 29.6 C21.5 22.6 26.4 17.6 32 17.6
+                 C37.6 17.6 42.5 22.6 42.5 41.6 Z" fill="currentColor" opacity=".88"/>
+        <path d="M12.6 41.6 l2.5-5.8 2.5 5.8 z" fill="currentColor" opacity=".55"/>
+        <path d="M46.4 41.6 l2.4-5.4 2.4 5.4 z" fill="currentColor" opacity=".55"/>
+        <path d="M9.6 42.1 H54.4" stroke="currentColor" stroke-width="1.1" opacity=".7"/>
+        <text x="32" y="52.6" font-family="Marcellus, serif" font-size="5.4"
+              fill="currentColor" text-anchor="middle" letter-spacing="1.05"
+              opacity=".78">EST. 1864</text>
+      </svg>
+  </div>
+  <div class="wrap footer-grid">
+    <div>
+      <h5>联系优胜美地</h5>
+      <p class="hotline">209 / 372-0200</p>
+      <p>地址：Yosemite National Park, California, U.S.A.<br>美国加利福尼亚州 优胜美地国家公园</p>
+      <p>开放时间：全年开放，部分高山道路季节性封闭</p>
+    </div>
+
+    <div>
+      <h5>快速入口</h5>
+      <ul>
+        <li><a href="index.html#about">公园简介</a></li>
+        <li><a href="plan.html">规划旅程</a></li>
+        <li><a href="seasons.html">四季游览</a></li>
+        <li><a href="news.html">公园动态</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h5>实用工具</h5>
+      <ul>
+        <li><a href="tips.html">出行锦囊</a></li>
+        <li><a href="waterfalls.html">瀑布指南</a></li>
+        <li><a href="permits.html">许可与预约</a></li>
+        <li><a href="https://www.nps.gov/yose/index.htm" target="_blank" rel="noopener">访问官方网站 nps.gov</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-note">
+    本站为面向中文游客的信息参考站，内容编译自美国国家公园管理局（NPS）公开资料，非官方网站，不代表 NPS 立场；行程与票务请以 nps.gov 官方最新信息为准。<br>
+    Yosemite National Park · Experience Your America.
+  </div>
+</footer>
+
+<div class="floatbar">
+  <a class="fb-btn" href="tel:2093720200" aria-label="电话咨询">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" aria-hidden="true">
+      <path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/>
+    </svg>
+    <span class="pop">209 / 372-0200</span>
+  </a>
+  <a class="fb-btn" href="plan.html" aria-label="规划旅程">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" aria-hidden="true">
+      <path d="M9 20 3 17V4l6 3 6-3 6 3v13l-6-3-6 3z"/><path d="M9 7v13M15 4v13"/>
+    </svg>
+    <span class="pop">规划旅程</span>
+  </a>
+  <button class="fb-btn to-top" id="toTop" aria-label="返回顶部">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" aria-hidden="true">
+      <path d="m6 14 6-6 6 6"/>
+    </svg>
+  </button>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="js/main.js"></script>
+<script src="js/motion.js"></script>
+<script src="js/pages.js"></script>
+</body>
+</html>

@@ -1,0 +1,595 @@
+/* =========================================================
+   Design Upgrade · Editorial Heritage
+   复古国家公园海报 × 旅行杂志编辑感
+   仅做视觉层覆盖，不改变原有结构与脚本
+   ========================================================= */
+:root{
+  --du-green:#1B3A2C;
+  --du-cream:#F5F1E6;
+  --du-gold:#B07A35;
+  --du-clay:#C4622A;
+  --du-radius:15px;
+  --du-shadow:0 24px 48px -24px rgba(60,40,20,.28);
+  --du-shadow-hover:0 36px 64px -28px rgba(60,40,20,.36);
+}
+
+/* ---------- 全站颗粒质感（印刷纸张感） ---------- */
+.grain{
+  position:fixed; inset:0; z-index:9998; pointer-events:none;
+  opacity:.05; mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------- 照片统一暖色纪录片调色 ---------- */
+.hero .slide img,
+.about img, .areas img, .scenery img,
+.plan img, .seasons img, .news img, .tips img{
+  filter:saturate(1.06) contrast(1.03) sepia(.05);
+}
+
+/* ---------- Hero：电影画框 / 渐变压暗 / Ken Burns ---------- */
+.hero::before{
+  content:""; position:absolute; inset:0; z-index:1; pointer-events:none;
+  background:
+    linear-gradient(to top, rgba(18,28,22,.72) 0%, rgba(18,28,22,.18) 38%, rgba(18,28,22,.04) 62%, transparent 100%),
+    linear-gradient(to right, rgba(12,22,17,.42) 0%, transparent 46%);
+}
+.hero::after{
+  content:""; position:absolute; inset:16px; z-index:2; pointer-events:none;
+  border:1px solid rgba(245,241,230,.26);
+}
+.hero-inner{ z-index:3; }
+.hero-arrow, .dots, .scroll-cue{ z-index:4; }
+.hero .slide.active img{
+  animation:kenburns 24s ease-in-out infinite alternate;
+}
+@keyframes kenburns{
+  from{ transform:scale(1.02); }
+  to  { transform:scale(1.11) translateY(-1.6%); }
+}
+/* 四角坐标字幕 */
+.hero-coord{
+  position:absolute; z-index:3;
+  font-family:'Marcellus', serif;
+  font-size:.72rem; letter-spacing:.28em;
+  color:rgba(245,241,230,.72);
+}
+.hero-coord.tl{ top:38px; left:40px; }
+.hero-coord.br{ bottom:38px; right:40px; }
+
+/* ---------- 章节节奏：更大留白 ---------- */
+section{ padding:clamp(96px,11vh,150px) 0; }
+.about-text p{ line-height:1.95; max-width:60ch; }
+.area-body p{ line-height:1.92; }
+
+/* ---------- 水印大字：描边镂空 ---------- */
+.deco-word{
+  color:transparent !important;
+  -webkit-text-stroke:1.4px rgba(27,58,44,.13);
+}
+/* 装饰圆环 → 等高线地形图 */
+.deco-ring{
+  border:0 !important;
+  background:
+    radial-gradient(circle at center,
+      transparent 0 27%, rgba(176,122,53,.28) 27.4%, transparent 27.8% 41%,
+      rgba(176,122,53,.20) 41.4%, transparent 41.8% 58%,
+      rgba(176,122,53,.14) 58.4%, transparent 58.8% 76%,
+      rgba(176,122,53,.10) 76.4%, transparent 76.8%);
+}
+
+/* ---------- 章节编号 ---------- */
+.sec-num{
+  display:block;
+  font-family:'Marcellus', serif;
+  font-size:.85rem; letter-spacing:.38em;
+  color:var(--du-gold);
+  margin-bottom:14px;
+}
+/* 标题下金菱形装饰 */
+.sec-head h2::after,
+.about-text h2::after{
+  content:""; display:block;
+  width:9px; height:9px; margin-top:22px;
+  background:var(--du-gold); transform:rotate(45deg);
+  box-shadow:0 0 0 4px rgba(176,122,53,.12);
+}
+.sec-head h2::after{ margin-left:auto; margin-right:auto; }
+.about-text h2::after{ margin-left:0; }
+
+/* ---------- 首字下沉（杂志感） ----------
+   字号控制在正文字号的 2 倍（原来 3.5em 太大，会横跨三行、压住后两行文字）。
+   导语包进 .about-lead 之后，这条规则随之下移到导语块一节，选择器改为
+   `.about-lead > p::first-letter`。 */
+
+/* ---------- About：不对称编辑版式 ---------- */
+.about-grid{
+  grid-template-columns:7fr 5fr;
+  gap:clamp(44px,6vw,92px);
+  align-items:center;
+}
+.video-box{
+  border-radius:var(--du-radius);
+  overflow:hidden;
+  box-shadow:var(--du-shadow);
+}
+
+/* ---------- 统计数字：石刻大字 ---------- */
+.about-stats{ gap:52px; margin-top:40px; }
+.about-stats b{ display:block; }
+.about-stats b span, .about-stats b{
+  font-family:'Marcellus', serif;
+  font-size:3.1rem; font-weight:400;
+  color:var(--du-green);
+  line-height:1;
+}
+/* 统计项：统一竖线方案与左内边距
+   坑：style.css 用 `.about-stats div::before` 画竖条（每一项都有），
+   若给第一项 `padding-left:0`，竖条就会紧贴数字。
+   所以不再区分首项，也不用 border-left（否则会和 ::before 叠成双线）。 */
+.about-stats > div{ padding-left:24px; border-left:0; }
+
+/* ---------- 区域卡片：不对称 + 柔和投影 ---------- */
+.area-card{
+  grid-template-columns:7fr 5fr;
+  border-radius:var(--du-radius);
+  overflow:hidden;
+  box-shadow:var(--du-shadow);
+  transition:transform .5s ease, box-shadow .5s ease;
+}
+.area-card:nth-of-type(2){ grid-template-columns:5fr 7fr; }
+.area-card:nth-of-type(2) .area-img{ order:2; }
+.area-card:hover{ transform:translateY(-6px); box-shadow:var(--du-shadow-hover); }
+.area-img img{ transition:transform 1.3s ease; }
+.area-card:hover .area-img img{ transform:scale(1.06); }
+.view-more{ transition:padding-left .3s ease; }
+.view-more:hover{ padding-left:8px; }
+
+/* ---------- 风光卡片轨 ---------- */
+.scene-card{
+  border-radius:var(--du-radius); overflow:hidden;
+  box-shadow:var(--du-shadow);
+}
+.scene-card img{ transition:transform 1.3s ease; }
+.scene-card:hover img{ transform:scale(1.08); }
+
+/* ---------- 规划旅程卡片 ---------- */
+.plan-card{
+  position:relative;
+  border-radius:var(--du-radius); overflow:hidden;
+  box-shadow:var(--du-shadow);
+  transition:transform .5s ease, box-shadow .5s ease;
+}
+.plan-card::after{
+  content:""; position:absolute; inset:0; z-index:1; pointer-events:none;
+  background:linear-gradient(to top, rgba(16,30,24,.74) 0%, rgba(16,30,24,.16) 45%, transparent 64%);
+}
+.plan-card .pc{ position:relative; z-index:2; }
+.plan-card img{ transition:transform 1.3s ease; }
+.plan-card:hover{ transform:translateY(-5px); box-shadow:var(--du-shadow-hover); }
+.plan-card:hover img{ transform:scale(1.07); }
+
+/* ---------- 四季 Tab：编辑式下划线 ---------- */
+.season-tabs{ border-bottom:1px solid rgba(27,58,44,.18); }
+.season-tabs button{
+  background:transparent !important;
+  border:0; border-bottom:2px solid transparent;
+  border-radius:0;
+  color:var(--du-green);
+  padding-bottom:12px;
+}
+.season-tabs button.active{
+  background:transparent !important;
+  color:var(--du-clay);
+  border-bottom-color:var(--du-gold);
+}
+.season-panel img, .season-panel .img-mask{
+  border-radius:var(--du-radius); overflow:hidden;
+  box-shadow:var(--du-shadow);
+}
+
+/* ---------- 新闻 ---------- */
+.news-feature{
+  border-radius:var(--du-radius); overflow:hidden;
+  box-shadow:var(--du-shadow);
+}
+
+/* ---------- 锦囊图标卡 ---------- */
+.tip{
+  border-radius:var(--du-radius);
+  box-shadow:var(--du-shadow);
+  transition:transform .5s ease, box-shadow .5s ease;
+}
+.tip:hover{ transform:translateY(-5px); box-shadow:var(--du-shadow-hover); }
+
+/* ---------- 按钮：扫光微交互 ---------- */
+.btn{ position:relative; overflow:hidden; }
+.btn-primary::before{
+  content:""; position:absolute; top:0; left:-90%;
+  width:55%; height:100%;
+  background:linear-gradient(100deg, transparent, rgba(255,255,255,.38), transparent);
+  transform:skewX(-20deg);
+}
+.btn-primary:hover::before{ animation:btn-sweep .85s ease; }
+@keyframes btn-sweep{ to{ left:135%; } }
+
+/* ---------- 悬浮工具栏：收敛克制 ---------- */
+.floatbar .fb-btn{
+  transform:scale(.86);
+  opacity:.82;
+  transition:transform .3s ease, opacity .3s ease;
+  box-shadow:0 10px 24px -10px rgba(10,25,18,.5);
+}
+.floatbar .fb-btn:hover{ transform:scale(1); opacity:1; }
+
+/* ---------- 页脚：超大镂空水印 + 金线收束 ---------- */
+.footer-watermark{
+  text-align:center; overflow:hidden;
+  font-family:'Marcellus', serif;
+  font-size:clamp(58px,12vw,176px);
+  line-height:1; letter-spacing:.08em;
+  color:transparent;
+  -webkit-text-stroke:1px rgba(245,241,230,.20);
+  margin-bottom:34px;
+  user-select:none;
+}
+.footer-note::before{
+  content:""; display:block;
+  width:120px; height:1px;
+  background:var(--du-gold);
+  margin:0 auto 26px;
+}
+
+/* ---------- 移动端适配：不对称网格回归单栏 ---------- */
+@media (max-width:560px){
+  .about-grid{ grid-template-columns:1fr; gap:40px; }
+  .area-card,
+  .area-card:nth-of-type(2){ grid-template-columns:1fr; }
+  .area-card:nth-of-type(2) .area-img{ order:0; }
+  .hero-coord.tl{ display:none; }
+  .hero-coord.br{ bottom:30px; right:28px; font-size:.62rem; }
+  .about-stats{ gap:28px; flex-wrap:wrap; }
+  .season-tabs{ display:grid; grid-template-columns:repeat(4,1fr); }
+  .season-tabs button{ padding:0 0 10px; font-size:.95rem; }
+}
+
+/* ---------- 动效降级 ---------- */
+@media (prefers-reduced-motion: reduce){
+  .grain{ display:none; }
+  .hero .slide.active img{ animation:none; }
+  .area-card,.plan-card,.tip,.scene-card,.video-box,.news-feature{ transition:none; }
+  .area-img img,.plan-card img,.scene-card img{ transition:none; }
+  .drawer.open a{ animation:none; opacity:1; }
+  .read-progress i{ transition:none; }
+}
+
+/* =========================================================
+   第二批：徽章 Logo / 阅读进度 / 编辑式编号 / 金线菱形 / 图层叠压
+   ========================================================= */
+
+/* ---------- 公园徽章 Logo ---------- */
+.brand .badge{
+  width:52px; height:52px; flex:none;
+  color:var(--du-cream);
+  transition:transform .6s cubic-bezier(.22,1,.36,1);
+}
+.brand:hover .badge{ transform:rotate(-8deg) scale(1.04); }
+
+.footer-badge{
+  display:flex; justify-content:center;
+  margin:0 auto clamp(26px,4vh,44px);
+}
+.footer-badge .badge{
+  width:clamp(72px,8vw,96px); height:clamp(72px,8vw,96px);
+  color:rgba(245,241,230,.46);
+}
+
+/* ---------- 顶部阅读进度细线 ---------- */
+.read-progress{
+  position:fixed; top:0; left:0; right:0; height:2px;
+  z-index:9999; pointer-events:none;
+}
+.read-progress i{
+  display:block; height:100%; width:100%;
+  transform:scaleX(0); transform-origin:0 50%;
+  background:linear-gradient(90deg,var(--du-gold),var(--du-clay));
+  transition:transform .12s linear;
+}
+
+/* ---------- 章节编号：大号浅描边 ---------- */
+.sec-num{
+  display:block;
+  font-family:'Marcellus', serif;
+  font-size:clamp(34px,3.8vw,54px);
+  line-height:.9;
+  letter-spacing:.06em;
+  color:transparent;
+  -webkit-text-stroke:1px rgba(176,122,53,.62);
+  margin-bottom:6px;
+}
+
+/* ---------- 标题下金线 + 菱形徽（——◆——） ---------- */
+/* 注意：上面第一批的规则带 transform:rotate(45deg)（原本是个小菱形块），
+   这里必须显式复位，否则 190px 的横线会被整体转成斜线。 */
+.sec-head h2::after,
+.about-text h2::after{
+  content:""; display:block;
+  width:190px; height:9px;
+  margin:26px auto 0;
+  transform:none;
+  box-shadow:none;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='9'%3E%3Cpath d='M4.5 0 9 4.5 4.5 9 0 4.5Z' fill='%23B07A35'/%3E%3C/svg%3E") center/9px 9px no-repeat,
+    linear-gradient(var(--du-gold),var(--du-gold)) left center/82px 1px no-repeat,
+    linear-gradient(var(--du-gold),var(--du-gold)) right center/82px 1px no-repeat;
+  opacity:.9;
+}
+.about-text h2::after{ margin-left:0; margin-right:auto; }
+
+/* ---------- 统计数字：石刻斜体大字 ----------
+   ⚠️ 必须写成 `.about-stats div b`（特异性 0,1,2），不能用 `.about-stats b`（0,1,1）：
+   style.css 第 280 行有 `.about-stats div b{display:block}`，特异性更高，
+   用低特异性选择器时会出现「同一份声明块里 font-size 生效、display 偏偏不生效」的诡异现象。 */
+.about-stats div b{
+  display:flex;
+  align-items:baseline;   /* 让「约」与数字共用同一条基线，不撑高行盒 */
+  font-size:clamp(44px,5.4vw,74px);
+  font-style:italic;
+  letter-spacing:.005em;
+}
+.about-stats div b span{
+  font-size:inherit;
+  font-style:inherit;
+  letter-spacing:inherit;
+}
+
+/* 「约」前缀：中文不能跟着 Marcellus 一起斜，单独回正、缩小；
+   用 flex 基线对齐 —— 用 vertical-align 抬升会撑高行盒，把数字整体压下去 */
+.about-stats div b .approx{
+  font-family:'Noto Serif SC', serif;
+  font-style:normal;
+  font-size:.4em;
+  font-weight:500;
+  line-height:1;
+  letter-spacing:.04em;
+  color:var(--du-clay);
+  margin-right:.1em;
+  flex:none;
+}
+
+/* ---------- 规划卡角标 ---------- */
+.plan-card .pc-badge{
+  position:absolute; top:16px; right:16px; z-index:4;
+  font-family:var(--latin); font-size:10px; letter-spacing:.16em;
+  padding:6px 12px; border-radius:999px;
+  background:var(--du-clay); color:#fff;
+  box-shadow:0 6px 16px -6px rgba(0,0,0,.5);
+}
+
+/* ---------- 抽屉菜单：逐条错位淡入 ----------
+   注意：抽屉的开合类名是 .drawer.open（不是 .is-open） */
+@keyframes drawer-item-in{
+  from{ opacity:0; transform:translateY(16px); }
+  to  { opacity:1; transform:none; }
+}
+.drawer.open a{
+  opacity:0;
+  animation:drawer-item-in .5s cubic-bezier(.22,1,.36,1) forwards;
+}
+.drawer.open a:nth-of-type(1){ animation-delay:.06s; }
+.drawer.open a:nth-of-type(2){ animation-delay:.11s; }
+.drawer.open a:nth-of-type(3){ animation-delay:.16s; }
+.drawer.open a:nth-of-type(4){ animation-delay:.21s; }
+.drawer.open a:nth-of-type(5){ animation-delay:.26s; }
+.drawer.open a:nth-of-type(6){ animation-delay:.31s; }
+.drawer.open a:nth-of-type(7){ animation-delay:.36s; }
+
+/* ---------- About 视频框定位 ----------
+   曾经为了让视频框「下探压过分隔线」而改成 align-items:end + 负外边距，
+   结果文字列(778px)远高于视频(348px)，视频被压到最底部、上方空出 534px，位置明显失衡。
+   垂直居中与「压过分隔线」在高度差这么大的前提下无法兼得 —— 这里选居中（位置正确优先）。 */
+.about-grid{ position:relative; z-index:3; align-items:center; }
+
+/* ---------- 首页 Hero：四角坐标字幕 ---------- */
+/* 顶部两角必须让开固定导航（--nav-h:74px），否则被压在导航下面 */
+.hero-coord.tl{ top:96px; left:40px; }
+.hero-coord.tr{ top:96px; right:40px; }
+.hero-coord.bl{ bottom:38px; left:40px; }
+.hero-coord.br{ bottom:38px; right:40px; }
+
+/* ---------- 内页页头：收敛为首页 Hero 约 1/3 高 + 画框 ---------- */
+body.page .page-hero{
+  min-height:clamp(340px,38vh,470px);
+  padding-bottom:clamp(38px,4.5vh,56px);
+}
+body.page .page-hero::after{
+  content:""; position:absolute; inset:14px; z-index:2; pointer-events:none;
+  border:1px solid rgba(245,241,230,.22);
+}
+body.page .page-hero .wrap{ position:relative; z-index:3; }
+body.page .page-hero .hero-coord{ z-index:3; }
+body.page .page-hero > img{ filter:saturate(1.06) contrast(1.03) sepia(.05); }
+/* 内页页头只有 1/3 高、内容顶到上沿，左上角坐标会压住英文眉题，故只留右下角 */
+body.page .hero-coord.tl{ display:none; }
+
+/* 内页正文排版对齐杂志感 */
+body.page .doc-main p,
+body.page .doc-main li{ line-height:1.92; }
+body.page .doc-main > section > p{ max-width:68ch; }
+
+/* ---------- About 右侧媒体列：竖排手写批注 + 视频 ---------- */
+/* ---------- 导语块：四角标记 + 关键年份强调 ----------
+   设计取自「印刷校对标记」的语汇：四角细金线框住导语，
+   关键年份 1864 / 1890 用下划线挑出，让开篇段落成为整栏的视觉锚点。 */
+.about-lead{
+  position:relative;
+  margin:26px 0 22px;
+  padding:clamp(20px,2.2vw,28px) clamp(20px,2.4vw,30px);
+  background:linear-gradient(180deg,rgba(176,122,53,.07),rgba(176,122,53,.02));
+  border-radius:var(--du-radius);
+}
+.about-lead > p{
+  margin:0;
+  text-align:justify;
+}
+
+/* 四个角标：::before/::after 负责左上、右下，两个 span 负责右上、左下 */
+.about-lead::before,
+.about-lead::after,
+.about-lead .al-corner{
+  content:"";
+  position:absolute;
+  width:22px; height:22px;
+  pointer-events:none;
+  opacity:.85;
+}
+.about-lead::before{
+  top:0; left:0;
+  border-top:1.5px solid var(--du-gold);
+  border-left:1.5px solid var(--du-gold);
+}
+.about-lead::after{
+  bottom:0; right:0;
+  border-bottom:1.5px solid var(--du-gold);
+  border-right:1.5px solid var(--du-gold);
+}
+.about-lead .al-tr{
+  top:0; right:0;
+  border-top:1.5px solid var(--du-gold);
+  border-right:1.5px solid var(--du-gold);
+}
+.about-lead .al-bl{
+  bottom:0; left:0;
+  border-bottom:1.5px solid var(--du-gold);
+  border-left:1.5px solid var(--du-gold);
+}
+
+/* 关键年份：Marcellus + 金色下划线，把时间线从正文里挑出来 */
+.about-lead em{
+  font-family:var(--latin);
+  font-style:normal;
+  font-size:1.08em;
+  letter-spacing:.02em;
+  color:var(--du-green);
+  border-bottom:1.5px solid rgba(176,122,53,.6);
+  padding-bottom:.06em;
+}
+
+/* ---------- 导语首字（装饰件，非下沉） ----------
+   需求原文：「"优"字要放在第一行，不要影响到第二行的字体」。
+   背景：上一版用 float 时，首字行盒 59.52px = 2 倍正文行高（30.2px），
+   会挤压第二行。目标是把首字彻底移出「行盒计算」。
+
+   做法（三步，前两步缺一不可）：
+
+   ① 首字脱离行内流
+      ::first-letter 改为 absolute，不再占行内位置。
+
+   ② 用「内边距预留 + 悬挂缩进」腾出空位，而不是 text-indent
+      **这是本轮踩的坑**：一开始用 `text-indent: 34.4px` 预留空位，
+      结果首行可用宽度少了一个字的宽度，正文整体多挤出一行
+      （4 行 → 5 行的量，段落高度 120px → 128px）。
+      实测：把 `::first-letter` 整个 `display:none` 掉，段落仍是 128px ——
+      证明多出来的高度**与首字无关，纯粹是 text-indent 造成的断行**。
+
+      正确写法是 `padding-left` + 负 `text-indent`：
+      块级左侧多出 34.4px（首字就落在这里），首行再用负缩进把这 34.4px 拉回来，
+      于是**每一行的可用宽度都与原来完全一致**，断行、行数、行高都不变。
+      首行文字从 padding 内边缘起排，刚好落在首字右侧。
+
+   ③ 首字「不参与行盒」的关键：显式给一个小的 line-height
+      ::first-letter 即便 position:absolute，**它的字号仍会进入第一行的 strut**：
+      实测 2em + `line-height:1` 时段落 129px，而把 line-height 压到 15px（或 0）就回到
+      122px —— 与「完全没有首字」的普通段落分毫不差。
+      原因：strut 高度取「行内最大行框高度」，首字 28.21px×1 的行框比正文 30px 行框的
+      实际内容高度更高，于是第一行被顶高。
+      首字已经绝对定位并自带 width/height，line-height 对它自身渲染没有意义，
+      所以直接写 `line-height:0`，让它彻底退出 strut 竞争。 */
+.about-lead > p{
+  --al-cap:1.82em;          /* 空位边长：约一个字宽，正方形 */
+  --al-cap-gap:.4em;        /* 空位与正文之间的留白 */
+  margin:0;
+  /* 左侧预留空位（首字落此处）；首行用负缩进拉回，
+     保证「每行可用宽度」与不加首字时一模一样 */
+  padding-left:calc(var(--al-cap) + var(--al-cap-gap));
+  text-indent:calc(-1 * (var(--al-cap) + var(--al-cap-gap)));
+  line-height:30px;         /* 固定行高，与视口/字体无关 */
+  text-align:justify;
+}
+.about-lead > p::first-letter{
+  /* 不写 font-family：继承正文，第一行 strut 与正文一致 */
+  font-size:var(--al-cap);
+  line-height:0;            /* ★ 关键：不参与 strut，正文行盒零影响 */
+  font-weight:600;
+  float:none;               /* 退出浮动 */
+  position:absolute;        /* 脱离行内流，不再参与占位与断行 */
+  left:clamp(20px,2.4vw,30px);   /* 与 .about-lead 内边距对齐 */
+  top:clamp(21px,2.3vw,29px);
+  width:var(--al-cap);
+  height:var(--al-cap);
+  margin:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-style:normal;        /* 斜体会让字身向右压住后面的文字 */
+  color:var(--du-clay);
+  background:linear-gradient(180deg,rgba(176,122,53,.10),rgba(176,122,53,.03));
+  border:1px solid rgba(176,122,53,.36);
+  border-radius:3px;
+  text-indent:0;
+  pointer-events:none;
+}
+
+/* ---------- 视频：真正可播放 ---------- */
+.video-box .video-el{
+  display:block;
+  width:100%;
+  aspect-ratio:4/3;
+  object-fit:cover;
+  background:#0d1f17;
+}
+/* 播放后隐藏自绘播放键与字幕条，交还给原生控件 */
+.video-box.is-playing .video-play,
+.video-box.is-playing .video-cap{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+}
+
+/* 播放键 / 字幕条的淡出过渡 */
+.video-box .video-play,
+.video-box .video-cap{
+  transition:opacity .35s ease, visibility .35s ease, transform .3s ease;
+}
+
+@media (max-width:900px){
+  /* 窄屏收敛导语的角标与内边距，避免框太占地方 */
+  .about-lead{ padding:20px 18px; margin:22px 0 18px; }
+  .about-lead::before,
+  .about-lead::after,
+  .about-lead .al-corner{ width:16px; height:16px; }
+  /* 首字空位随内边距一起左移/上移，否则会脱离预留位置 */
+  .about-lead > p::first-letter{ left:18px; top:20px; }
+  /* 小屏行高略收，首字随之微缩，保持「一个字宽」的方形空位 */
+  .about-lead > p{ line-height:28px; }
+}
+
+/* ---------- 小屏收敛 ---------- */
+@media (max-width:560px){
+  .about-stats > div{ padding-left:18px; }
+  .brand .badge{ width:42px; height:42px; }
+  .sec-num{ font-size:30px; }
+  .about-stats div b span, .about-stats div b{ font-size:clamp(38px,10vw,52px); }
+  .hero-coord.tr{ display:none; }
+  .hero-coord.bl{ bottom:30px; left:28px; font-size:.62rem; }
+  .sec-head h2::after, .about-text h2::after{ width:150px; }
+  .sec-head h2::after{
+    background:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='9'%3E%3Cpath d='M4.5 0 9 4.5 4.5 9 0 4.5Z' fill='%23B07A35'/%3E%3C/svg%3E") center/8px 8px no-repeat,
+      linear-gradient(var(--du-gold),var(--du-gold)) left center/62px 1px no-repeat,
+      linear-gradient(var(--du-gold),var(--du-gold)) right center/62px 1px no-repeat;
+  }
+  body.page .page-hero{ min-height:clamp(300px,44vh,400px); }
+  /* 内页页头在窄屏被关键数据条占满，右下角坐标会与之重叠，直接隐藏 */
+  body.page .hero-coord.br{ display:none; }
+}
